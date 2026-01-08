@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <img src={logo} alt="Ghetto Foundation" className="h-16 w-auto" />
             <p className="text-gray-300 text-sm leading-relaxed">
-              Empowering communities in Mathare, Nairobi through education, innovation, and sustainable development.
+              Empowering communities in Mathare through education, research, and sustainable development initiatives.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-gray-400 hover:text-primary transition-colors">
@@ -45,10 +45,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4">Our Programs</h4>
             <ul className="space-y-2">
-              <li><Link to="/programs/education" className="text-gray-300 hover:text-primary transition-colors">Education</Link></li>
-              <li><Link to="/programs/health" className="text-gray-300 hover:text-primary transition-colors">Health & Wellness</Link></li>
-              <li><Link to="/programs/economic" className="text-gray-300 hover:text-primary transition-colors">Economic Empowerment</Link></li>
-              <li><Link to="/programs/youth" className="text-gray-300 hover:text-primary transition-colors">Youth Development</Link></li>
+              <li><Link to="/programs/education" className="text-gray-300 hover:text-primary transition-colors">Digital Associates</Link></li>
+              <li><Link to="/programs/youth" className="text-gray-300 hover:text-primary transition-colors">Youth Leadership</Link></li>
+              <li><Link to="/programs/health" className="text-gray-300 hover:text-primary transition-colors">Civic Education</Link></li>
+              <li><Link to="/programs/economic" className="text-gray-300 hover:text-primary transition-colors">Ghetto Stories</Link></li>
             </ul>
           </div>
 
@@ -74,7 +74,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Ghetto Foundation. All rights reserved.
+            © {new Date().getFullYear()} Ghetto Foundation. All rights reserved. Built with ❤️ for the community.
           </p>
         </div>
       </div>
