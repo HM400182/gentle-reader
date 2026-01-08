@@ -28,9 +28,10 @@ const Navbar = () => {
       name: "Programs",
       href: "/programs",
       dropdown: [
-        { name: "Education", href: "/programs/education" },
-        { name: "Health", href: "/programs/health" },
-        { name: "Economic Empowerment", href: "/programs/economic" },
+        { name: "Digital Associates", href: "/programs/education" },
+        { name: "Youth Leadership", href: "/programs/youth" },
+        { name: "Civic Education", href: "/programs/health" },
+        { name: "Ghetto Stories", href: "/programs/economic" },
       ],
     },
     { name: "Donate", href: "/donate" },
