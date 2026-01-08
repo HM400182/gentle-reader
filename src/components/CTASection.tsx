@@ -13,7 +13,7 @@ const CTASection = () => {
         <div className="absolute inset-0 bg-black/70" />
       </div>
 
-      <div className="relative container mx-auto px-4 text-center">
+      <div className="relative container mx-auto px-4 text-center animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
           Join Us in Making a Difference
         </h2>
@@ -24,7 +24,7 @@ const CTASection = () => {
         <div className="flex flex-wrap justify-center gap-4">
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 hover:scale-105"
             asChild
           >
             <Link to="/donate">
@@ -35,7 +35,7 @@ const CTASection = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-white text-white hover:bg-white hover:text-foreground font-semibold"
+            className="border-2 border-white text-white hover:bg-white hover:text-foreground font-semibold transition-all duration-300 hover:scale-105"
             asChild
           >
             <Link to="/contact">

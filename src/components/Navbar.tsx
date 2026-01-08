@@ -34,6 +34,7 @@ const Navbar = () => {
         { name: "Ghetto Stories", href: "/programs/economic" },
       ],
     },
+    { name: "News & Announcements", href: "/news" },
     { name: "Donate", href: "/donate" },
     { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },

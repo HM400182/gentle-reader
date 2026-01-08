@@ -11,7 +11,7 @@ const ImpactSection = () => {
   return (
     <section className="py-20 bg-primary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
             Our Impact
           </h2>
@@ -22,11 +22,15 @@ const ImpactSection = () => {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="w-16 h-16 bg-primary-foreground/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div 
+              key={index} 
+              className="text-center animate-fade-in group"
+              style={{ animationDelay: `${index * 150}ms` }}
+            >
+              <div className="w-16 h-16 bg-primary-foreground/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary-foreground/20 transition-all duration-300">
                 <stat.icon className="h-8 w-8 text-primary-foreground" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-primary-foreground mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-primary-foreground mb-2 group-hover:scale-105 transition-transform duration-300">
                 {stat.value}
               </div>
               <div className="text-primary-foreground/80 font-medium">

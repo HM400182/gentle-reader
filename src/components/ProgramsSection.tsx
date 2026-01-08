@@ -37,7 +37,7 @@ const ProgramsSection = () => {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Our <span className="text-primary">Programs</span>
           </h2>
@@ -50,11 +50,12 @@ const ProgramsSection = () => {
           {programs.map((program, index) => (
             <div
               key={index}
-              className="group bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all border border-border"
+              className="group bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-border animate-fade-in hover-lift"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className={`${program.color} h-2`} />
+              <div className={`${program.color} h-2 group-hover:h-3 transition-all duration-300`} />
               <div className="p-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <program.icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold text-card-foreground mb-2">
@@ -65,18 +66,18 @@ const ProgramsSection = () => {
                 </p>
                 <Link
                   to={program.link}
-                  className="inline-flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all"
+                  className="inline-flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all duration-300"
                 >
                   Learn More
-                  <ArrowRight className="h-4 w-4 ml-1" />
+                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-10">
-          <Button asChild className="bg-primary hover:bg-primary/90">
+        <div className="text-center mt-10 animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <Button asChild className="bg-primary hover:bg-primary/90 hover:scale-105 transition-all duration-300">
             <Link to="/programs">View All Programs</Link>
           </Button>
         </div>
