@@ -22,7 +22,7 @@ const AboutSection = () => {
   return (
     <section className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             About <span className="text-primary">Ghetto Foundation</span>
           </h2>
@@ -35,9 +35,10 @@ const AboutSection = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="bg-card p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-border"
+              className="bg-card p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-border animate-fade-in hover-lift"
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <card.icon className="h-7 w-7 text-primary" />
               </div>
               <h3 className="text-xl font-semibold text-card-foreground mb-3">
