@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
+import logoImage from '@/assets/logo.png';
+import unityHands from '@/assets/unity-hands-hero.jpg';
 
 const Index = () => {
   const impactStats = [
@@ -36,17 +38,16 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative hero-gradient text-white -mt-6 pb-16 lg:-mt-12 lg:pb-32">
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative hero-gradient text-white pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-32 min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fade-in">
-              <h1 className="text-white leading-tight">
+            <div className="space-y-6 sm:space-y-8 animate-fade-in">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight break-words drop-shadow-lg">
                 Empowering Communities
-                <span className="block text-white/90">in Mathare, Nairobi</span>
+                <span className="block text-white mt-1 sm:mt-2">in Mathare, Nairobi</span>
               </h1>
               
-              <p className="text-xl lg:text-2xl text-white/90 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-2xl drop-shadow-md">
                 The Ghetto Foundation is dedicated to community-driven development, 
                 research, and sustainable change through education, innovation, and collaboration.
               </p>
@@ -68,13 +69,13 @@ const Index = () => {
               </div>
             </div>
             
-           <div className="aspect-square rounded-3xl p-8 flex items-center justify-center">
-  <img 
-    src="/src/assets/1069392_149924578535165_506595463_n (1).png" 
-    alt="Ghetto Foundation Community" 
-    className="max-w-full max-h-full object-contain"
-  />
-</div>
+            <div className="hidden lg:flex aspect-square rounded-3xl p-4 md:p-8 items-center justify-center">
+              <img 
+                src={logoImage}
+                alt="Ghetto Foundation Logo" 
+                className="max-w-full max-h-full object-contain drop-shadow-2xl"
+              />
+            </div>
 
           </div>
         </div>
@@ -168,24 +169,32 @@ const Index = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 hero-gradient text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 animate-fade-in">
-          <h2 className="text-white mb-6">
+      <section className="relative py-16 sm:py-20 text-white overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${unityHands})` }}
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
             Join Us in Making a Difference
           </h2>
-          <p className="text-xl text-white/90 mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto">
             Whether through donations, volunteering, or partnerships, 
             your support helps us create lasting change in Mathare.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/donate">
-              <Button className="btn-hero bg-white text-community-warm hover:bg-gray-100">
+              <Button className="btn-hero bg-white text-community-warm hover:bg-gray-100 w-full sm:w-auto">
                 Support Our Work
                 <Heart className="ml-2 w-5 h-5" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="btn-outline border-white text-white hover:bg-white hover:text-community-warm">
+              <Button className="btn-outline border-white text-white hover:bg-white hover:text-community-warm w-full sm:w-auto">
                 Get Involved
                 <Users className="ml-2 w-5 h-5" />
               </Button>
