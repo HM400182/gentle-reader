@@ -17,20 +17,32 @@ const Donate = () => {
         "SWIFT Code: BARCKENX"
       ]
     },
-    {
-      title: "Mobile Transfer (Kenya)",
-      icon: Smartphone,
-      details: [
-        "M-Pesa PayBill Number: 7232719",
-        "Bank Option: KCB"
-      ]
-    },
+   {
+  title: "Mobile Transfer (Kenya)",
+  icon: Smartphone,
+  details: [
+    "M-Pesa PayBill Number: 303030",
+    "Account No.: 2028272955",
+    "Bank Option: ABSA Bank",
+    "", // first blank line
+    "", // second blank line to increase separation
+    "",
+    "",
+    "",
+    "",
+
+    "M-Pesa PayBill Number: 313030",
+    "Account No.: 2028272955",
+    "Bank Option: KCB Bank"
+  ]
+},
+
     {
       title: "International Online Money Transfer",
       icon: Globe,
       details: [
         "Platform: WorldRemit.com",
-        "Recipient Name: Daniel Wainaina Wanjiku",
+        "Recipient Name:SAMUEL KIRIRO WAIRIMU",
         "Email: management@ghettofoundationkenya.org"
       ]
     }
