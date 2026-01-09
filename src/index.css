@@ -107,7 +107,7 @@
 
   /* Typography hierarchy */
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight;
   }
 
   h2 {
@@ -125,9 +125,8 @@
   /* Community-specific utilities */
 .hero-gradient {
   position: relative;
-  background: url('/src/assets/hero-bg.jpg.jpeg') no-repeat center center;
+  background: url('/images/hero-bg.jpg') no-repeat center center;
   background-size: cover;
-  background-attachment: fixed; /* optional parallax effect */
 }
 
 /* Dark overlay on hero */
@@ -135,7 +134,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity: 0.5 works well */
+  background-color: rgba(0, 0, 0, 0.55);
   z-index: 0;
 }
 
