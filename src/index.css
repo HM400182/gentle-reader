@@ -1,97 +1,98 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Ghetto Foundation Design System - All colors in HSL */
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    /* Orange primary - Ghetto Foundation brand */
-    --primary: 24 95% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 23 93% 53%; /* Orange from logo */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 142 76% 36%; /* Community green */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-
-    /* Green accent for growth/hope */
-    --accent: 142 71% 45%;
+    --accent: 217 91% 60%; /* Trust blue */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 24 95% 53%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --radius: 0.5rem;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 23 93% 53%;
 
-    /* Custom Ghetto Foundation tokens */
-    --ghetto-orange: 24 95% 53%;
-    --ghetto-orange-dark: 24 95% 45%;
-    --ghetto-charcoal: 0 0% 20%;
-    --ghetto-warm-white: 40 33% 98%;
-    --ghetto-earth: 30 30% 40%;
+    --radius: 0.75rem;
+
+    /* Community-specific colors */
+    --community-warm: 23 93% 53%; /* Orange */
+    --community-nature: 142 76% 36%; /* Green */
+    --community-trust: 217 91% 60%; /* Blue */
+    --community-earth: 25 95% 53%; /* Warm earth tone */
+    
+    /* Gradients */
+    --hero-gradient: linear-gradient(135deg, hsl(var(--community-warm)) 0%, hsl(var(--community-earth)) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    --impact-gradient: linear-gradient(135deg, hsl(var(--community-nature)) 0%, hsl(var(--community-trust)) 100%);
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 26%;
-    --sidebar-primary: 24 95% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 91%;
-    --sidebar-ring: 24 95% 53%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 98%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 24 95% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 23 93% 53%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 18%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 142 76% 36%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 142 71% 45%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 24 95% 53%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 24 95% 53%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 16%;
-    --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 24 95% 53%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -101,124 +102,152 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Typography hierarchy */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold leading-tight;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  /* Community-specific utilities */
+.hero-gradient {
+  position: relative;
+  background: url('/src/assets/hero-bg.jpg.jpeg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; /* optional parallax effect */
+}
+
+/* Dark overlay on hero */
+.hero-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity: 0.5 works well */
+  z-index: 0;
+}
+
+/* Make text and buttons appear above overlay */
+.hero-gradient > * {
+  position: relative;
+  z-index: 10;
+}
+
+
+  .card-gradient {
+    background: var(--card-gradient);
+  }
+
+  .impact-gradient {
+    background: var(--impact-gradient);
+  }
+
+  .text-community-warm {
+    color: hsl(var(--community-warm));
+  }
+
+  .text-community-nature {
+    color: hsl(var(--community-nature));
+  }
+
+  .text-community-trust {
+    color: hsl(var(--community-trust));
+  }
+
+  .bg-community-warm {
+    background-color: hsl(var(--community-warm));
+  }
+
+  .bg-community-nature {
+    background-color: hsl(var(--community-nature));
+  }
+
+  .bg-community-trust {
+    background-color: hsl(var(--community-trust));
   }
 }
 
-@layer utilities {
-  .text-shadow {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .text-shadow-lg {
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+@layer components {
+  /* Button variants using design system */
+  .btn-hero {
+    @apply bg-community-warm hover:bg-community-earth text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
   }
 
-  /* Animation utilities */
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+  .btn-secondary {
+    @apply bg-community-nature hover:bg-community-nature/90 text-white font-semibold px-6 py-2 rounded-lg transition-all duration-300;
   }
 
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out forwards;
+  .btn-outline {
+    @apply border-2 border-community-warm text-community-warm hover:bg-community-warm hover:text-white font-semibold px-6 py-2 rounded-lg transition-all duration-300;
   }
 
-  .animate-slide-in-left {
-    animation: slideInLeft 0.6s ease-out forwards;
+  /* Card styles */
+  .community-card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100;
   }
 
-  .animate-slide-in-right {
-    animation: slideInRight 0.6s ease-out forwards;
+  .impact-card {
+    @apply impact-gradient text-white rounded-xl shadow-lg p-6;
   }
 
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
+  /* Navigation styles */
+  .nav-link {
+    @apply text-foreground hover:text-community-warm transition-colors duration-200 font-medium;
   }
 
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .nav-link-active {
+    @apply text-community-warm font-semibold;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Animations */
+  .fade-in {
+    @apply animate-fade-in;
   }
 
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .slide-up {
+    @apply animate-slide-up;
   }
+}
 
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
 
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-
-  /* Hover animations */
-  .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .hover-glow {
-    transition: box-shadow 0.3s ease;
-  }
-
-  .hover-glow:hover {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
-  }
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out;
 }

@@ -1,73 +1,49 @@
-# Welcome to your Lovable project
+Ghetto Foundation Website
 
-## Project info
+Author: Hillary Mukaka
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Project Overview
 
-## How can I edit this code?
+The Ghetto Foundation (GF) Website showcases the foundation’s community-focused initiatives in Mathare, Nairobi. It provides information about programs, allows online donations, and highlights GF’s social impact.
 
-There are several ways of editing your application.
+Features
 
-**Use Lovable**
+Persistent, styled navbar on all 15 pages with dropdown menus for About Us and Programs
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+About Us Pages: History/Vision/Mission, Team (hover effect on member photos), Sponsors
 
-Changes made via Lovable will be committed automatically to this repo.
+Programs Pages: Mathare Resilience, Digital Associates, Community Projects, Our Research (CLRA), Youth Leadership, Civic Education, Ghetto Stories
 
-**Use your preferred IDE**
+Donate Page: Secure online donation functionality
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Gallery Page: Showcases images from GF initiatives
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Contact Page: Interactive Google Map (via Google Maps JavaScript API) and contact form
 
-Follow these steps:
+Fully responsive design for desktop, tablet, and mobile
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Design & UX
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Warm, inviting color palette (orange, green, blue accents)
 
-# Step 3: Install the necessary dependencies.
-npm i
+Clean, modern, community-friendly layout
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Easy navigation and clear visual hierarchy
 
-**Edit a file directly in GitHub**
+Team page includes hover effects to reveal member details
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Tech Stack
 
-**Use GitHub Codespaces**
+Frontend: Vite + React + TypeScript + TailwindCSS + shadcn-ui
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Backend (optional): Firebase, Supabase, or Node.js for donations/submissions
 
-## What technologies are used for this project?
+Google Maps JavaScript API: Interactive map for Contact page
 
-This project is built with:
+Recharts: Visualizing impact statistics
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Notes
 
-## How can I deploy this project?
+Designed to impress donors and community partners by highlighting professionalism, transparency, and impact
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Sponsors page includes logos, descriptions, and a “Become a Sponsor” call-to-action

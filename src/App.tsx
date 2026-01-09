@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,17 +7,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Team from "./pages/Team";
-import Partners from "./pages/Partners";
-import Programs from "./pages/Programs";
-import Education from "./pages/programs/Education";
-import Health from "./pages/programs/Health";
-import Economic from "./pages/programs/Economic";
-import Youth from "./pages/programs/Youth";
-import Donate from "./pages/Donate";
+import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
+import Donate from "./pages/Donate";
 import Contact from "./pages/Contact";
-import News from "./pages/News";
 import NotFound from "./pages/NotFound";
+import MathareResilience from "./pages/programs/MathareResilience";
+import DigitalAssociates from "./pages/programs/DigitalAssociates";
+import CommunityProjects from "./pages/programs/CommunityProjects";
+import Research from "./pages/programs/Research";
+import YouthLeadership from "./pages/programs/YouthLeadership";
+import CivicEducation from "./pages/programs/CivicEducation";
+import GhettoStories from "./pages/programs/GhettoStories";
 
 const queryClient = new QueryClient();
 
@@ -28,18 +30,20 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/programs/education" element={<Education />} />
-          <Route path="/programs/health" element={<Health />} />
-          <Route path="/programs/economic" element={<Economic />} />
-          <Route path="/programs/youth" element={<Youth />} />
-          <Route path="/donate" element={<Donate />} />
+          <Route path="/about/history" element={<About />} />
+          <Route path="/about/team" element={<Team />} />
+          <Route path="/about/sponsors" element={<Sponsors />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/donate" element={<Donate />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/programs/mathare-resilience" element={<MathareResilience />} />
+          <Route path="/programs/digital-associates" element={<DigitalAssociates />} />
+          <Route path="/programs/community-projects" element={<CommunityProjects />} />
+          <Route path="/programs/research" element={<Research />} />
+          <Route path="/programs/youth-leadership" element={<YouthLeadership />} />
+          <Route path="/programs/civic-education" element={<CivicEducation />} />
+          <Route path="/programs/ghetto-stories" element={<GhettoStories />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

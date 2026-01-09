@@ -1,142 +1,189 @@
-import Navbar from "@/components/Navbar";
-import PageHeader from "@/components/PageHeader";
-import Footer from "@/components/Footer";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
+import Layout from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 
 const Contact = () => {
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Address",
-      details: ["Mathare, Nairobi", "Kenya"],
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      details: ["+254 700 000 000", "+254 711 111 111"],
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      details: ["info@ghettofoundation.org", "support@ghettofoundation.org"],
-    },
-    {
-      icon: Clock,
-      title: "Office Hours",
-      details: ["Mon - Fri: 8:00 AM - 5:00 PM", "Sat: 9:00 AM - 1:00 PM"],
-    },
-  ];
-
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <PageHeader
-        title="Contact Us"
-        subtitle="Get in touch with us. We'd love to hear from you."
-      />
+    <Layout>
+      {/* Hero Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-community-trust/10 to-community-nature/10">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 animate-fade-in">
+          <h1 className="text-gray-900 mb-6">Get in Touch</h1>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            We'd love to hear from you. Whether you're interested in our programs, 
+            want to volunteer, or have any question about our work, we're here to help.
+          </p>
+        </div>
+      </section>
 
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-card p-8 rounded-lg shadow-lg border border-border">
-              <h2 className="text-2xl font-bold text-card-foreground mb-6">
-                Send Us a Message
-              </h2>
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+      {/* Contact Information & Form */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Information */}
+            <div className="space-y-8 animate-fade-in">
+              <Card className="community-card p-6">
+                <div className="flex items-start space-x-4">
+                  <MapPin className="w-6 h-6 text-community-warm mt-1" />
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      First Name
-                    </label>
-                    <Input placeholder="John" />
+                    <h4 className="text-gray-900 font-semibold mb-2">Visit Us</h4>
+                    <p className="text-gray-600">
+                      Mathare, Nairobi<br />
+                      Kenya
+                    </p>
                   </div>
+                </div>
+              </Card>
+
+              <Card className="community-card p-6">
+                <div className="flex items-start space-x-4">
+                  <Phone className="w-6 h-6 text-community-nature mt-1" />
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Last Name
-                    </label>
-                    <Input placeholder="Doe" />
+                    <h4 className="text-gray-900 font-semibold mb-2">Call Us</h4>
+                    <p className="text-gray-600">
+                      +254 XXX XXX XXX<br />
+                      Monday - Friday, 8AM - 5PM
+                    </p>
                   </div>
                 </div>
+              </Card>
 
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Email
-                  </label>
-                  <Input type="email" placeholder="john@example.com" />
+              <Card className="community-card p-6">
+                <div className="flex items-start space-x-4">
+                  <Mail className="w-6 h-6 text-community-trust mt-1" />
+                  <div>
+                    <h4 className="text-gray-900 font-semibold mb-2">Email Us</h4>
+                    <p className="text-gray-600">
+                      info@ghettofoundation.org<br />
+                      programs@ghettofoundation.org
+                    </p>
+                  </div>
                 </div>
+              </Card>
 
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Subject
-                  </label>
-                  <Input placeholder="How can we help?" />
+              <Card className="community-card p-6">
+                <div className="flex items-start space-x-4">
+                  <Clock className="w-6 h-6 text-community-warm mt-1" />
+                  <div>
+                    <h4 className="text-gray-900 font-semibold mb-2">Office Hours</h4>
+                    <p className="text-gray-600">
+                      Monday - Friday: 8:00 AM - 5:00 PM<br />
+                      Saturday: 9:00 AM - 2:00 PM<br />
+                      Sunday: Closed
+                    </p>
+                  </div>
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Message
-                  </label>
-                  <Textarea
-                    placeholder="Your message..."
-                    className="min-h-[150px]"
-                  />
-                </div>
-
-                <Button className="w-full bg-primary hover:bg-primary/90">
-                  Send Message
-                  <Send className="ml-2 h-4 w-4" />
-                </Button>
-              </form>
+              </Card>
             </div>
 
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-6">
-                  Contact Information
-                </h2>
-                <p className="text-muted-foreground mb-8">
-                  Have questions or want to learn more about our work? Reach out to
-                  us through any of the following channels.
-                </p>
-              </div>
+            {/* Contact Form */}
+            <div className="lg:col-span-2 animate-slide-up">
+              <Card className="community-card p-8">
+                <div className="mb-6">
+                  <h2 className="text-gray-900 mb-2">Send us a Message</h2>
+                  <p className="text-gray-600">Fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
 
-              <div className="grid gap-6">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon className="h-6 w-6 text-primary" />
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-gray-700 font-medium mb-2">First Name *</label>
+                      <input 
+                        type="text" 
+                        required
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-community-warm focus:border-transparent"
+                        placeholder="Your first name"
+                      />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">{info.title}</h3>
-                      {info.details.map((detail, i) => (
-                        <p key={i} className="text-muted-foreground text-sm">
-                          {detail}
-                        </p>
-                      ))}
+                      <label className="block text-gray-700 font-medium mb-2">Last Name *</label>
+                      <input 
+                        type="text" 
+                        required
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-community-warm focus:border-transparent"
+                        placeholder="Your last name"
+                      />
                     </div>
                   </div>
-                ))}
-              </div>
 
-              {/* Map Placeholder */}
-              <div className="bg-secondary rounded-lg aspect-video flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <MapPin className="h-12 w-12 mx-auto mb-2 text-primary/50" />
-                  <p>Map coming soon</p>
-                </div>
-              </div>
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">Email Address *</label>
+                    <input 
+                      type="email" 
+                      required
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-community-warm focus:border-transparent"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">Phone Number</label>
+                    <input 
+                      type="tel"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-community-warm focus:border-transparent"
+                      placeholder="+254 XXX XXX XXX"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">Subject *</label>
+                    <select 
+                      required
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-community-warm focus:border-transparent"
+                    >
+                      <option value="">Select a subject</option>
+                      <option value="programs">Programs & Services</option>
+                      <option value="volunteer">Volunteer Opportunities</option>
+                      <option value="partnership">Partnership Inquiry</option>
+                      <option value="donation">Donation Questions</option>
+                      <option value="media">Media Inquiry</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">Message *</label>
+                    <textarea 
+                      required
+                      rows={6}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-community-warm focus:border-transparent resize-vertical"
+                      placeholder="Tell us how we can help you or share your thoughts..."
+                    ></textarea>
+                  </div>
+
+                  <Button className="btn-hero w-full">
+                    Send Message
+                    <Send className="ml-2 w-5 h-5" />
+                  </Button>
+                </form>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
-      <Footer />
-    </div>
+      {/* Map Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-gray-900 mb-4">Find Us</h2>
+            <p className="text-xl text-gray-600">Located in the heart of Mathare, Nairobi</p>
+          </div>
+          
+          <Card className="community-card overflow-hidden animate-slide-up">
+            <div className="aspect-video bg-gray-200 flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="w-16 h-16 text-community-warm mx-auto mb-4" />
+                <p className="text-gray-600 font-medium">Interactive Map Coming Soon</p>
+                <p className="text-gray-500 text-sm mt-2">Google Maps integration will be added</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+    </Layout>
   );
 };
 

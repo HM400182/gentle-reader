@@ -1,110 +1,161 @@
-import Navbar from "@/components/Navbar";
-import PageHeader from "@/components/PageHeader";
-import Footer from "@/components/Footer";
-import { Target, Eye, Heart, Users, Award, Globe } from "lucide-react";
+
+import Layout from '@/components/Layout';
+import { Card, CardContent } from '@/components/ui/card';
+import { Target, Eye, Heart, Users, Lightbulb, MapPin } from 'lucide-react';
 
 const About = () => {
   const values = [
-    { icon: Heart, title: "Compassion", description: "We approach our work with empathy and care for every community member." },
-    { icon: Users, title: "Community-Driven", description: "We believe in solutions that come from within the community itself." },
-    { icon: Award, title: "Excellence", description: "We strive for the highest standards in all our programs and initiatives." },
-    { icon: Globe, title: "Sustainability", description: "We focus on creating lasting change that continues beyond our direct involvement." },
+    {
+      icon: Heart,
+      title: "Community First",
+      description: "Every decision we make prioritizes the needs and voices of the Mathare community."
+    },
+    {
+      icon: Users,
+      title: "Inclusive Participation",
+      description: "We believe in the power of collective action and ensure everyone has a voice."
+    },
+    {
+      icon: Lightbulb,
+      title: "Innovation & Research",
+      description: "Data-driven solutions and community-led research guide our approach."
+    },
+    {
+      icon: Target,
+      title: "Sustainable Impact",
+      description: "We focus on long-term solutions that create lasting positive change."
+    }
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <PageHeader
-        title="About Us"
-        subtitle="Learn about our journey, mission, and the values that drive our work"
-      />
+    <Layout>
+      {/* Hero Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-community-warm/10 to-community-nature/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in">
+            <h1 className="text-gray-900 mb-6">About Ghetto Foundation</h1>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Founded on the belief that every community has the power to transform itself, 
+              the Ghetto Foundation works hand-in-hand with residents of Mathare to create 
+              sustainable change through research, education, and community-driven initiatives.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Our Story */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
-            <div className="prose prose-lg text-muted-foreground space-y-4">
-              <p>
-                The Ghetto Foundation was born from the heart of Mathare, one of Nairobi's oldest
-                and largest informal settlements. Founded by community members who understood the
-                challenges firsthand, we began with a simple mission: to create opportunities
-                where there seemed to be none.
-              </p>
-              <p>
-                Over the years, we have grown from a small grassroots initiative to a recognized
-                community organization, impacting thousands of lives through education, health,
-                and economic empowerment programs. Our approach has always been community-driven,
-                believing that sustainable change comes from within.
-              </p>
-              <p>
-                Today, we continue to work alongside community members, local leaders, and
-                international partners to build a brighter future for Mathare and beyond.
-              </p>
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in">
+              <h2 className="text-gray-900 mb-6">Our Story</h2>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                <p>
+                  The Ghetto Foundation emerged from a deep understanding that lasting change 
+                  comes from within communities themselves. Founded by residents and supporters 
+                  who believed in the untapped potential of Mathare, we began as a grassroots 
+                  movement focused on education and community empowerment.
+                </p>
+                <p>
+                  Over the years, we've grown into a comprehensive organization that addresses 
+                  multiple facets of community development - from vocational training and 
+                  digital literacy to research and civic education. Our approach remains 
+                  unchanged: listen to the community, research the challenges, and implement 
+                  solutions together.
+                </p>
+                <p>
+                  Today, we continue to evolve, always guided by the voices and needs of 
+                  the people we serve. Every program, every initiative, and every decision 
+                  reflects our commitment to community-led development.
+                </p>
+              </div>
+            </div>
+            
+            <div className="animate-slide-up">
+              <Card className="community-card p-8">
+                <div className="text-center">
+                  <MapPin className="w-16 h-16 text-community-warm mx-auto mb-6" />
+                  <h3 className="text-gray-900 mb-4">Located in Mathare</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Mathare is one of Nairobi's largest informal settlements, home to over 
+                    200,000 residents. It's a vibrant community with incredible potential, 
+                    facing challenges that require innovative, community-driven solutions.
+                  </p>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-card p-8 rounded-lg shadow-lg border border-border">
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                <Target className="h-7 w-7 text-primary" />
-              </div>
-              <h3 className="text-2xl font-bold text-card-foreground mb-4">Our Mission</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                To empower communities in Mathare and beyond through sustainable development
-                initiatives, quality education, comprehensive health programs, and economic
-                opportunities that create lasting positive change while respecting local
-                culture and knowledge.
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <Card className="community-card p-8 animate-fade-in">
+              <Target className="w-12 h-12 text-community-warm mb-6" />
+              <h3 className="text-gray-900 mb-4">Our Mission</h3>
+              <p className="text-gray-600 leading-relaxed">
+                To empower the Mathare community through sustainable development initiatives, 
+                community-led research, and educational programs that create lasting positive 
+                impact and foster self-reliance.
               </p>
-            </div>
-
-            <div className="bg-card p-8 rounded-lg shadow-lg border border-border">
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                <Eye className="h-7 w-7 text-primary" />
-              </div>
-              <h3 className="text-2xl font-bold text-card-foreground mb-4">Our Vision</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                A world where every community, regardless of its circumstances, has access to
-                the resources, knowledge, and opportunities needed to thrive. We envision
-                Mathare as a model of community-driven development that inspires positive
-                change across Africa and the world.
+            </Card>
+            
+            <Card className="community-card p-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <Eye className="w-12 h-12 text-community-nature mb-6" />
+              <h3 className="text-gray-900 mb-4">Our Vision</h3>
+              <p className="text-gray-600 leading-relaxed">
+                A thriving, self-sustaining Mathare community where every individual has 
+                access to quality education, economic opportunities, and the resources 
+                needed to reach their full potential.
               </p>
-            </div>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Our Values</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              These core values guide everything we do and how we work with our community.
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-gray-900 mb-4">Our Values</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              These core values guide everything we do and shape how we work with the community.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{value.title}</h3>
-                <p className="text-muted-foreground text-sm">{value.description}</p>
-              </div>
+              <Card key={index} className="community-card p-6 text-center animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardContent className="p-0">
+                  <value.icon className="w-12 h-12 text-community-warm mx-auto mb-4" />
+                  <h4 className="text-gray-900 mb-3">{value.title}</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <Footer />
-    </div>
+      {/* Community-Led Research Approach */}
+      <section className="py-20 bg-gradient-to-r from-community-nature to-community-trust text-white">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 animate-fade-in">
+          <h2 className="text-white mb-6">Community-Led Research & Action (CLRA)</h2>
+          <p className="text-xl text-white/90 mb-8 leading-relaxed">
+            At the heart of our methodology is CLRA - an approach that ensures community 
+            members are not just beneficiaries but active researchers and decision-makers 
+            in identifying challenges and developing solutions.
+          </p>
+          <p className="text-white/80 leading-relaxed">
+            This participatory approach means that every program we implement is grounded 
+            in real community needs, backed by local research, and designed for sustainability 
+            by the very people it serves.
+          </p>
+        </div>
+      </section>
+    </Layout>
   );
 };
 
