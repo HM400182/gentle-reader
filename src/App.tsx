@@ -11,6 +11,7 @@ import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
 import Donate from "./pages/Donate";
 import Contact from "./pages/Contact";
+import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import MathareResilience from "./pages/programs/MathareResilience";
 import DigitalAssociates from "./pages/programs/DigitalAssociates";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/news" element={<News />} />
           <Route path="/programs/mathare-resilience" element={<MathareResilience />} />
           <Route path="/programs/digital-associates" element={<DigitalAssociates />} />
           <Route path="/programs/community-projects" element={<CommunityProjects />} />

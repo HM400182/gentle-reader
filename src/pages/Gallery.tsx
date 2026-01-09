@@ -1,218 +1,242 @@
+import { useState } from 'react';
 import Layout from '@/components/Layout';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Camera, Play, Calendar, Users, Award, Heart } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Camera, X, ChevronLeft, ChevronRight, ZoomIn, Coffee, Laptop, Users, Mic, Scale, Building, BookOpen } from 'lucide-react';
+
+interface GalleryImage {
+  id: number;
+  src: string;
+  title: string;
+  category: string;
+  description: string;
+}
 
 const Gallery = () => {
-  const galleryItems = [
-    {
-      id: 1,
-      type: 'image',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Community Workshop',
-      category: 'Education',
-      date: '2024-01-15',
-      description: 'Digital literacy training session with local youth'
-    },
-    {
-      id: 2,
-      type: 'image',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Mathare Resilience Center Groundbreaking',
-      category: 'Infrastructure',
-      date: '2024-02-08',
-      description: 'Community leaders breaking ground for the new resilience center'
-    },
-    {
-      id: 3,
-      type: 'video',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Youth Leadership Program',
-      category: 'Leadership',
-      date: '2024-01-22',
-      description: 'Young leaders presenting their community action plans'
-    },
-    {
-      id: 4,
-      type: 'image',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Community Research Session',
-      category: 'Research',
-      date: '2024-02-14',
-      description: 'CLRA methodology in action - community members conducting research'
-    },
-    {
-      id: 5,
-      type: 'image',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Civic Education Workshop',
-      category: 'Education',
-      date: '2024-02-20',
-      description: 'Teaching community members about their rights and civic participation'
-    },
-    {
-      id: 6,
-      type: 'video',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Ghetto Stories Documentation',
-      category: 'Storytelling',
-      date: '2024-03-01',
-      description: 'Capturing authentic stories from the Mathare community'
-    },
-    {
-      id: 7,
-      type: 'image',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Digital Associates Training',
-      category: 'Technology',
-      date: '2024-03-10',
-      description: 'Community members learning data collection and analysis skills'
-    },
-    {
-      id: 8,
-      type: 'image',
-      src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png',
-      title: 'Community Clean-up Day',
-      category: 'Environment',
-      date: '2024-03-15',
-      description: 'Residents working together to improve their neighborhood'
-    }
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const categories = [
+    { name: 'All', icon: Camera, color: 'bg-primary' },
+    { name: 'Uji Sato', icon: Coffee, color: 'bg-community-warm' },
+    { name: 'Digital Associates', icon: Laptop, color: 'bg-community-trust' },
+    { name: 'Youth Leadership', icon: Users, color: 'bg-community-nature' },
+    { name: 'Civic Education', icon: Scale, color: 'bg-community-hope' },
+    { name: 'Ghetto Stories', icon: Mic, color: 'bg-purple-500' },
+    { name: 'Mathare Resilience', icon: Building, color: 'bg-orange-500' },
+    { name: 'Research', icon: BookOpen, color: 'bg-teal-500' },
   ];
 
-  const categories = ['All', 'Education', 'Infrastructure', 'Leadership', 'Research', 'Technology', 'Storytelling', 'Environment'];
+  // Gallery images organized by program
+  const galleryImages: GalleryImage[] = [
+    // Uji Sato
+    { id: 1, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Morning Porridge Distribution', category: 'Uji Sato', description: 'Children receiving nutritious porridge to start their day' },
+    { id: 2, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Community Kitchen', category: 'Uji Sato', description: 'Volunteers preparing meals for the community' },
+    { id: 3, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Happy Children', category: 'Uji Sato', description: 'Smiling faces after a nourishing breakfast' },
+    { id: 4, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Uji Sato Volunteers', category: 'Uji Sato', description: 'Dedicated volunteers serving the community' },
+    
+    // Digital Associates
+    { id: 5, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Computer Training Session', category: 'Digital Associates', description: 'Youth learning digital skills' },
+    { id: 6, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Data Collection Workshop', category: 'Digital Associates', description: 'Training in community research methods' },
+    { id: 7, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Tech Hub Activities', category: 'Digital Associates', description: 'Young people working on digital projects' },
+    { id: 8, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Graduation Ceremony', category: 'Digital Associates', description: 'Celebrating digital literacy graduates' },
+    
+    // Youth Leadership
+    { id: 9, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Leadership Workshop', category: 'Youth Leadership', description: 'Young leaders in training session' },
+    { id: 10, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Community Meeting', category: 'Youth Leadership', description: 'Youth-led community discussion' },
+    { id: 11, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Mentorship Session', category: 'Youth Leadership', description: 'Mentors guiding young leaders' },
+    { id: 12, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Project Presentation', category: 'Youth Leadership', description: 'Leaders presenting community projects' },
+    
+    // Civic Education
+    { id: 13, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Rights Awareness Workshop', category: 'Civic Education', description: 'Teaching community about their rights' },
+    { id: 14, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Voter Education', category: 'Civic Education', description: 'Civic engagement training session' },
+    { id: 15, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Legal Awareness', category: 'Civic Education', description: 'Community members learning legal rights' },
+    
+    // Ghetto Stories
+    { id: 16, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Documentary Filming', category: 'Ghetto Stories', description: 'Capturing authentic Mathare stories' },
+    { id: 17, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Community Interview', category: 'Ghetto Stories', description: 'Recording residents\' experiences' },
+    { id: 18, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Photo Exhibition', category: 'Ghetto Stories', description: 'Showcasing community photography' },
+    
+    // Mathare Resilience
+    { id: 19, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Resilience Center Opening', category: 'Mathare Resilience', description: 'Community center inauguration' },
+    { id: 20, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Vocational Training', category: 'Mathare Resilience', description: 'Skills training in progress' },
+    { id: 21, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Mental Health Support', category: 'Mathare Resilience', description: 'Counseling and support services' },
+    
+    // Research
+    { id: 22, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'CLRA Session', category: 'Research', description: 'Community-led research in action' },
+    { id: 23, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Data Analysis Workshop', category: 'Research', description: 'Analyzing community data' },
+    { id: 24, src: '/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png', title: 'Research Presentation', category: 'Research', description: 'Sharing research findings' },
+  ];
+
+  const filteredImages = activeCategory === 'All' 
+    ? galleryImages 
+    : galleryImages.filter(img => img.category === activeCategory);
+
+  const openLightbox = (image: GalleryImage, index: number) => {
+    setSelectedImage(image);
+    setImageIndex(index);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+  };
+
+  const goToPrevious = () => {
+    const newIndex = imageIndex === 0 ? filteredImages.length - 1 : imageIndex - 1;
+    setImageIndex(newIndex);
+    setSelectedImage(filteredImages[newIndex]);
+  };
+
+  const goToNext = () => {
+    const newIndex = imageIndex === filteredImages.length - 1 ? 0 : imageIndex + 1;
+    setImageIndex(newIndex);
+    setSelectedImage(filteredImages[newIndex]);
+  };
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
+      <div className="min-h-screen bg-black">
         {/* Hero Section */}
-        <section className="relative py-20 px-4">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <div className="flex items-center justify-center mb-6">
-              <Camera className="w-12 h-12 text-primary mr-4" />
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+              <Camera className="w-10 h-10 sm:w-12 sm:h-12 text-white mr-4" />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
                 Our Gallery
               </h1>
             </div>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Explore moments from our community work, workshops, and initiatives. 
-              See the impact we're making together in Mathare.
+            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+              Explore moments from our programs. Click on any image to view in full screen.
             </p>
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-12 px-4">
+        {/* Category Filter */}
+        <section className="sticky top-16 z-40 py-4 px-4 bg-black/95 backdrop-blur-lg border-b border-gray-800">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-              <div className="text-center">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
-                  <Camera className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">500+</div>
-                <div className="text-sm text-muted-foreground">Photos</div>
-              </div>
-              <div className="text-center">
-                <div className="bg-community-warm/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
-                  <Play className="w-8 h-8 text-community-warm" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">50+</div>
-                <div className="text-sm text-muted-foreground">Videos</div>
-              </div>
-              <div className="text-center">
-                <div className="bg-community-growth/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
-                  <Users className="w-8 h-8 text-community-growth" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">200+</div>
-                <div className="text-sm text-muted-foreground">People Featured</div>
-              </div>
-              <div className="text-center">
-                <div className="bg-community-hope/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
-                  <Heart className="w-8 h-8 text-community-hope" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">25+</div>
-                <div className="text-sm text-muted-foreground">Events Documented</div>
-              </div>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+              {categories.map((category) => {
+                const IconComponent = category.icon;
+                const isActive = activeCategory === category.name;
+                return (
+                  <Button
+                    key={category.name}
+                    variant={isActive ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => setActiveCategory(category.name)}
+                    className={`
+                      flex items-center gap-2 rounded-full px-3 sm:px-4 py-2 transition-all duration-300
+                      ${isActive 
+                        ? `${category.color} text-white shadow-lg scale-105` 
+                        : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                      }
+                    `}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span className="text-xs sm:text-sm font-medium">{category.name}</span>
+                  </Button>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* Filter Categories */}
-        <section className="pb-8 px-4">
+        {/* Results Count */}
+        <div className="py-4 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              {categories.map((category) => (
-                <Badge
-                  key={category}
-                  variant={category === 'All' ? 'default' : 'secondary'}
-                  className="cursor-pointer hover:bg-primary hover:text-primary-foreground px-4 py-2"
+            <p className="text-gray-500 text-sm">
+              Showing {filteredImages.length} {filteredImages.length === 1 ? 'photo' : 'photos'}
+              {activeCategory !== 'All' && ` in ${activeCategory}`}
+            </p>
+          </div>
+        </div>
+
+        {/* Gallery Grid - iPhone-style */}
+        <section className="pb-16 px-2 sm:px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+              {filteredImages.map((image, index) => (
+                <div 
+                  key={image.id} 
+                  className="aspect-square relative group cursor-pointer overflow-hidden animate-fade-in"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                  onClick={() => openLightbox(image, index)}
                 >
-                  {category}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Gallery Grid */}
-        <section className="pb-16 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {galleryItems.map((item) => (
-                <Card key={item.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer">
-                  <div className="relative aspect-square overflow-hidden">
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    {item.type === 'video' && (
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                        <div className="bg-white/90 rounded-full p-3">
-                          <Play className="w-6 h-6 text-primary" />
-                        </div>
-                      </div>
-                    )}
-                    <div className="absolute top-2 right-2">
-                      <Badge variant="secondary" className="text-xs">
-                        {item.category}
-                      </Badge>
+                  <img
+                    src={image.src}
+                    alt={image.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-2">
+                      <ZoomIn className="w-8 h-8 text-white mx-auto mb-2" />
+                      <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">{image.title}</p>
                     </div>
                   </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-sm mb-1 line-clamp-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
-                      {item.description}
-                    </p>
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <Calendar className="w-3 h-3 mr-1" />
-                      {new Date(item.date).toLocaleDateString()}
-                    </div>
-                  </CardContent>
-                </Card>
+                  {/* Category Badge */}
+                  <Badge 
+                    className="absolute bottom-2 left-2 text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/70 text-white border-0"
+                  >
+                    {image.category}
+                  </Badge>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Call to Action */}
-        <section className="py-16 px-4 bg-secondary/5">
-          <div className="max-w-2xl mx-auto text-center">
-            <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="text-3xl font-bold mb-6 text-foreground">
-              Share Your Story
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Have photos or videos from our community events? We'd love to feature your perspective 
-              in our gallery and celebrate our collective impact.
-            </p>
-            <Button size="lg" className="btn-hero">
-              Submit Your Photos
-            </Button>
-          </div>
-        </section>
+        {/* Lightbox Modal */}
+        <Dialog open={!!selectedImage} onOpenChange={closeLightbox}>
+          <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-0 overflow-hidden">
+            {selectedImage && (
+              <div className="relative w-full h-full flex flex-col">
+                {/* Close Button */}
+                <button
+                  onClick={closeLightbox}
+                  className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {/* Navigation Arrows */}
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </button>
+                <button
+                  onClick={goToNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </button>
+
+                {/* Image */}
+                <div className="flex-1 flex items-center justify-center p-4 sm:p-8">
+                  <img
+                    src={selectedImage.src}
+                    alt={selectedImage.title}
+                    className="max-w-full max-h-[70vh] object-contain rounded-lg"
+                  />
+                </div>
+
+                {/* Image Info */}
+                <div className="p-4 sm:p-6 bg-gradient-to-t from-black to-transparent">
+                  <Badge className="mb-2 bg-community-warm text-white">{selectedImage.category}</Badge>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{selectedImage.title}</h3>
+                  <p className="text-gray-400 text-sm">{selectedImage.description}</p>
+                  <p className="text-gray-500 text-xs mt-2">
+                    {imageIndex + 1} of {filteredImages.length}
+                  </p>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </Layout>
   );
