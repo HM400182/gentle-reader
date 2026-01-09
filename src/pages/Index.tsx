@@ -60,20 +60,20 @@ const Index = () => {
                   </Button>
                 </Link>
                 
-                <Link to="/about/history">
+                <Link to="/news">
                   <Button className="btn-outline border-white text-white hover:bg-white hover:text-community-warm">
-                    Learn More
+                    Announcements & News
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
               </div>
             </div>
             
-            <div className="hidden lg:flex aspect-square rounded-3xl p-4 md:p-8 items-center justify-center">
+            <div className="flex aspect-square rounded-3xl p-4 md:p-8 items-center justify-center">
               <img 
                 src={logoImage}
                 alt="Ghetto Foundation Logo" 
-                className="max-w-full max-h-full object-contain drop-shadow-2xl"
+                className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-96 xl:h-96 object-contain drop-shadow-2xl animate-fade-in"
               />
             </div>
 

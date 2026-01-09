@@ -120,6 +120,13 @@ const Navigation = () => {
             </Link>
 
             <Link
+              to="/news"
+              className={`nav-link ${isActive("/news") ? "nav-link-active" : ""}`}
+            >
+              News
+            </Link>
+
+            <Link
               to="/contact"
               className={`nav-link ${isActive("/contact") ? "nav-link-active" : ""}`}
             >
@@ -203,6 +210,15 @@ const Navigation = () => {
                 }`}
               >
                 Gallery
+              </Link>
+
+              <Link
+                to="/news"
+                className={`block py-2 nav-link ${
+                  isActive("/news") ? "nav-link-active" : ""
+                }`}
+              >
+                News
               </Link>
 
               <Link
