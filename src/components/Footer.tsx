@@ -1,95 +1,143 @@
-
-import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from "react-router-dom"
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+  HeartHandshake,
+} from "lucide-react"
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Mission */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+          {/* Logo & Mission */}
           <div className="space-y-4">
-            <img 
-              src="/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png" 
-              alt="Ghetto Foundation Logo" 
+            <img
+              src="/lovable-uploads/1604577f-833a-4c8c-88fd-03385f133d3f.png"
+              alt="Ghetto Foundation Logo"
               className="h-12 w-auto"
             />
-            <p className="text-gray-300 text-sm">
-              Empowering communities in Mathare through education, research, and sustainable development initiatives.
+
+            <p className="text-sm leading-relaxed text-gray-300">
+              Empowering communities in Mathare through education, research,
+              and sustainable development initiatives.
             </p>
-            <div className="flex space-x-4">
-              <Facebook className="w-5 h-5 text-gray-400 hover:text-community-warm cursor-pointer transition-colors" />
-              <Twitter className="w-5 h-5 text-gray-400 hover:text-community-warm cursor-pointer transition-colors" />
-              <Instagram className="w-5 h-5 text-gray-400 hover:text-community-warm cursor-pointer transition-colors" />
+
+            {/* Social Icons */}
+            <div className="flex gap-4 pt-2">
+              {[
+                { icon: Facebook, link: "https://facebook.com" },
+                { icon: Twitter, link: "https://twitter.com" },
+                { icon: Instagram, link: "https://instagram.com" },
+                { icon: Youtube, link: "https://youtube.com" },
+              ].map(({ icon: Icon, link }, i) => (
+                <a
+                  key={i}
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <Icon className="h-5 w-5 text-gray-400 transition-all duration-300 group-hover:scale-125 group-hover:text-community-warm" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
             <div className="space-y-2">
-              <Link to="/about/history" className="block text-gray-300 hover:text-community-warm transition-colors">
-                About Us
-              </Link>
-              <Link to="/programs/mathare-resilience" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Programs
-              </Link>
-              <Link to="/donate" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Donate
-              </Link>
-              <Link to="/gallery" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Gallery
-              </Link>
+              {[
+                { label: "About Us", to: "/about/history" },
+                { label: "Programs", to: "/programs/mathare-resilience" },
+                { label: "Gallery", to: "/gallery" },
+              ].map((item, i) => (
+                <Link
+                  key={i}
+                  to={item.to}
+                  className="block text-sm text-gray-300 transition-all hover:translate-x-1 hover:text-community-warm"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Programs */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Programs</h3>
+            <h3 className="mb-4 text-lg font-semibold">Our Programs</h3>
             <div className="space-y-2">
-              <Link to="/programs/digital-associates" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Digital Associates
-              </Link>
-              <Link to="/programs/youth-leadership" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Youth Leadership
-              </Link>
-              <Link to="/programs/civic-education" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Civic Education
-              </Link>
-              <Link to="/programs/ghetto-stories" className="block text-gray-300 hover:text-community-warm transition-colors">
-                Ghetto Stories
-              </Link>
+              {[
+                { label: "Digital Associates", to: "/programs/digital-associates" },
+                { label: "Youth Leadership", to: "/programs/youth-leadership" },
+                { label: "Civic Education", to: "/programs/civic-education" },
+              ].map((item, i) => (
+                <Link
+                  key={i}
+                  to={item.to}
+                  className="block text-sm text-gray-300 transition-all hover:translate-x-1 hover:text-community-warm"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-community-warm" />
-                <span className="text-gray-300 text-sm">Mathare, Nairobi, Kenya</span>
+          {/* Contact + Donation */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Contact Us</h3>
+
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <MapPin className="h-5 w-5 text-community-warm" />
+                <span className="text-gray-300">Mathare, Nairobi, Kenya</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-community-warm" />
-                <span className="text-gray-300 text-sm">+254 XXX XXX XXX</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-community-warm" />
-                <span className="text-gray-300 text-sm">info@ghettofoundation.org</span>
-              </div>
+
+              {/* Clickable Phone */}
+              <a
+                href="tel:+254XXXXXXXXX"
+                className="flex items-center gap-3 text-gray-300 transition hover:text-community-warm"
+              >
+                <Phone className="h-5 w-5 text-community-warm" />
+                +254 XXX XXX XXX
+              </a>
+
+              {/* Clickable Email */}
+              <a
+                href="mailto:info@ghettofoundation.org"
+                className="flex items-center gap-3 text-gray-300 transition hover:text-community-warm"
+              >
+                <Mail className="h-5 w-5 text-community-warm" />
+                info@ghettofoundation.org
+              </a>
             </div>
+
+            {/* Donation CTA */}
+            <Link
+              to="/donate"
+              className="inline-flex items-center gap-2 rounded-md bg-community-warm px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-community-warm/90"
+            >
+              <HeartHandshake className="h-4 w-4" />
+              Support Our Work
+            </Link>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
+        {/* Bottom */}
+        <div className="mt-10 border-t border-gray-800 pt-6 text-center">
+          <p className="text-xs text-gray-400 sm:text-sm">
             © 2025 Ghetto Foundation. All rights reserved. Built with ❤️ for the community.
           </p>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
