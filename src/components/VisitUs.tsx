@@ -22,13 +22,6 @@ const VisitUs = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleGetDirections = () => {
-    window.open(
-      "https://www.google.com/maps/dir/?api=1&destination=-1.2654585,36.8574394",
-      "_blank"
-    );
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -56,20 +49,24 @@ const VisitUs = () => {
           </div>
 
           {/* Map Container */}
-          <div className="relative w-full overflow-hidden rounded-2xl shadow-lg border border-border/50 bg-card">
-            <div className="aspect-video sm:aspect-[21/9]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8452236002904!2d36.85486447363135!3d-1.2654584987224897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1777b5edd017%3A0xad01ec1768ca566e!2sGhetto%20Foundation!5e0!3m2!1sen!2ske!4v1768246435440!5m2!1sen!2ske"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
-                className="absolute inset-0"
-              />
-            </div>
+          <div 
+            className="relative w-full overflow-hidden rounded-xl bg-card"
+            style={{ 
+              aspectRatio: '16 / 9',
+              boxShadow: '0 8px 30px -12px hsl(var(--foreground) / 0.15), 0 4px 10px -6px hsl(var(--foreground) / 0.1)'
+            }}
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.85414349635!2d36.85525077573673!3d-1.2655513987224203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1777b5edd317%3A0xad01ec1768ca566e!2sGhetto%20Foundation!5e0!3m2!1sen!2ske!4v1715682000000!5m2!1sen!2ske"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
+              className="absolute inset-0 h-[300px] sm:h-[450px] w-full rounded-xl"
+            />
           </div>
 
           {/* Address & CTA */}
@@ -82,11 +79,17 @@ const VisitUs = () => {
             </div>
 
             <Button
-              onClick={handleGetDirections}
+              asChild
               className="bg-community-warm hover:bg-community-warm/90 text-white gap-2 w-full sm:w-auto"
             >
-              <ExternalLink className="w-4 h-4" />
-              Get Directions
+              <a 
+                href="https://maps.app.goo.gl/o1kR4vYjH8jY6Y9M9" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Open in Google Maps for Navigation
+              </a>
             </Button>
           </div>
         </div>
