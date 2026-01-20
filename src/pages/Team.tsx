@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Linkedin, Twitter, MapPin, Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 
 const Team = () => {
   const teamMembers = [
@@ -115,43 +115,8 @@ const Team = () => {
                   
                   <div className="text-center">
                     <h3 className="text-gray-900 mb-2">{member.name}</h3>
-                    <p className="text-community-warm font-medium mb-4">{member.role}</p>
-                    
-                    <div className="flex items-center justify-center text-gray-500 text-sm mb-4">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {member.location}
-                    </div>
-
-                    {/* Contact Links */}
-                    <div className="flex justify-center space-x-3">
-                      {member.email && (
-                        <a 
-                          href={`mailto:${member.email}`}
-                          className="p-2 text-gray-600 hover:text-community-warm transition-colors duration-200"
-                          aria-label={`Email ${member.name}`}
-                        >
-                          <Mail className="w-4 h-4" />
-                        </a>
-                      )}
-                      {member.linkedin && (
-                        <a 
-                          href={member.linkedin}
-                          className="p-2 text-gray-600 hover:text-community-trust transition-colors duration-200"
-                          aria-label={`${member.name} LinkedIn`}
-                        >
-                          <Linkedin className="w-4 h-4" />
-                        </a>
-                      )}
-                      {member.twitter && (
-                        <a 
-                          href={member.twitter}
-                          className="p-2 text-gray-600 hover:text-community-nature transition-colors duration-200"
-                          aria-label={`${member.name} Twitter`}
-                        >
-                          <Twitter className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
+                    <p className="text-community-warm font-medium mb-3">{member.role}</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
                   </div>
                 </CardContent>
               </Card>

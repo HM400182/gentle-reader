@@ -42,13 +42,14 @@ const Gallery = () => {
 
   const categories = [
     { name: 'All', icon: Camera, color: 'bg-primary' },
-    { name: 'Uji Sato', icon: Coffee, color: 'bg-community-warm' },
-    { name: 'Digital Associates', icon: Laptop, color: 'bg-community-trust' },
-    { name: 'Youth Leadership', icon: Users, color: 'bg-community-nature' },
-    { name: 'Civic Education', icon: Scale, color: 'bg-community-hope' },
-    { name: 'Ghetto Stories', icon: Mic, color: 'bg-purple-500' },
     { name: 'Mathare Resilience', icon: Building, color: 'bg-orange-500' },
-    { name: 'Research', icon: BookOpen, color: 'bg-teal-500' },
+    { name: 'Digital Associates', icon: Laptop, color: 'bg-community-trust' },
+    { name: 'Community Projects', icon: Users, color: 'bg-community-nature' },
+    { name: 'Our Research', icon: BookOpen, color: 'bg-teal-500' },
+    { name: 'Youth Leadership', icon: Users, color: 'bg-purple-500' },
+    { name: 'Civic Education', icon: Scale, color: 'bg-community-hope' },
+    { name: 'Events', icon: Calendar, color: 'bg-pink-500' },
+    { name: 'Uji Sato', icon: Coffee, color: 'bg-community-warm' },
   ];
 
   // Real gallery images organized by program

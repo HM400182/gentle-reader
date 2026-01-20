@@ -9,7 +9,6 @@ import {
   MapPin,
   HeartHandshake,
 } from "lucide-react";
-import logo from "@/assets/logo.png";
 import VisitUs from "./VisitUs";
 
 const Footer = () => {
@@ -19,13 +18,9 @@ const Footer = () => {
       <footer className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-            {/* Logo & Mission */}
+            {/* Mission & Social */}
             <div className="space-y-4">
-              <img
-                src={logo}
-                alt="Ghetto Foundation Logo"
-                className="h-12 w-auto brightness-0 invert"
-              />
+              <h3 className="text-lg font-semibold">Ghetto Foundation</h3>
               <p className="text-sm leading-relaxed text-gray-300">
                 Empowering communities in Mathare through education, research,
                 and sustainable development initiatives.
