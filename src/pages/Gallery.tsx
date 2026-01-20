@@ -4,13 +4,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Camera, X, ChevronLeft, ChevronRight, ZoomIn, Coffee, Laptop, Users, Mic, Scale, Building, BookOpen, Play, Calendar, MapPin, Clock } from 'lucide-react';
+import { Camera, X, ChevronLeft, ChevronRight, ZoomIn, Coffee, Laptop, Users, Mic, Scale, Building, BookOpen, Play, Calendar, MapPin, Clock, ArrowLeft, Sparkles, PartyPopper } from 'lucide-react';
 
 interface GalleryImage {
   id: number;
   src: string;
   title: string;
   category: string;
+  eventName?: string; // For event-specific photos
   description: string;
 }
 
@@ -34,11 +35,19 @@ interface Event {
   category: string;
 }
 
+interface EventCategory {
+  name: string;
+  date: string;
+  photoCount: number;
+  coverImage: string;
+}
+
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [imageIndex, setImageIndex] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const [selectedEventName, setSelectedEventName] = useState<string | null>(null);
 
   const categories = [
     { name: 'All', icon: Camera, color: 'bg-primary' },
@@ -50,6 +59,16 @@ const Gallery = () => {
     { name: 'Civic Education', icon: Scale, color: 'bg-community-hope' },
     { name: 'Events', icon: Calendar, color: 'bg-pink-500' },
     { name: 'Uji Sato', icon: Coffee, color: 'bg-community-warm' },
+  ];
+
+  // Event categories with their details
+  const eventCategories: EventCategory[] = [
+    { name: 'Community Day 2025', date: 'December 2025', photoCount: 6, coverImage: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800' },
+    { name: 'Youth Summit 2025', date: 'October 2025', photoCount: 5, coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800' },
+    { name: 'Annual Gala 2024', date: 'November 2024', photoCount: 4, coverImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800' },
+    { name: 'Sports Day 2024', date: 'August 2024', photoCount: 5, coverImage: 'https://images.unsplash.com/photo-1461896836934- voices-from-mathare?w=800' },
+    { name: 'Cultural Festival 2024', date: 'June 2024', photoCount: 4, coverImage: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800' },
+    { name: 'Graduation Ceremony 2024', date: 'March 2024', photoCount: 4, coverImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800' },
   ];
 
   // Real gallery images organized by program
@@ -96,11 +115,51 @@ const Gallery = () => {
     { id: 29, src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800', title: 'Mental Health Support', category: 'Mathare Resilience', description: 'Counseling and support services' },
     { id: 30, src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800', title: 'Community Support', category: 'Mathare Resilience', description: 'Building community bonds' },
     
-    // Research
-    { id: 31, src: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800', title: 'CLRA Session', category: 'Research', description: 'Community-led research in action' },
-    { id: 32, src: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800', title: 'Data Analysis Workshop', category: 'Research', description: 'Analyzing community data' },
-    { id: 33, src: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800', title: 'Research Presentation', category: 'Research', description: 'Sharing research findings' },
-    { id: 34, src: 'https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=800', title: 'Field Research', category: 'Research', description: 'Conducting community surveys' },
+    // Research (Our Research)
+    { id: 31, src: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800', title: 'CLRA Session', category: 'Our Research', description: 'Community-led research in action' },
+    { id: 32, src: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800', title: 'Data Analysis Workshop', category: 'Our Research', description: 'Analyzing community data' },
+    { id: 33, src: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800', title: 'Research Presentation', category: 'Our Research', description: 'Sharing research findings' },
+    { id: 34, src: 'https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=800', title: 'Field Research', category: 'Our Research', description: 'Conducting community surveys' },
+
+    // Events - Community Day 2025
+    { id: 35, src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800', title: 'Opening Ceremony', category: 'Events', eventName: 'Community Day 2025', description: 'Community Day 2025 opening ceremony' },
+    { id: 36, src: 'https://images.unsplash.com/photo-1529543544277-750e2ea87e67?w=800', title: 'Community Gathering', category: 'Events', eventName: 'Community Day 2025', description: 'Residents gathering for celebrations' },
+    { id: 37, src: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=800', title: 'Group Activities', category: 'Events', eventName: 'Community Day 2025', description: 'Fun group activities and games' },
+    { id: 38, src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800', title: 'Food Sharing', category: 'Events', eventName: 'Community Day 2025', description: 'Sharing meals together' },
+    { id: 39, src: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800', title: 'Award Ceremony', category: 'Events', eventName: 'Community Day 2025', description: 'Recognizing community heroes' },
+    { id: 40, src: 'https://images.unsplash.com/photo-1559223607-a43c990c692c?w=800', title: 'Closing Dance', category: 'Events', eventName: 'Community Day 2025', description: 'Celebrating with traditional dance' },
+
+    // Events - Youth Summit 2025
+    { id: 41, src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800', title: 'Summit Opening', category: 'Events', eventName: 'Youth Summit 2025', description: 'Youth Summit 2025 kickoff' },
+    { id: 42, src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800', title: 'Keynote Speech', category: 'Events', eventName: 'Youth Summit 2025', description: 'Inspiring keynote address' },
+    { id: 43, src: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800', title: 'Workshop Sessions', category: 'Events', eventName: 'Youth Summit 2025', description: 'Interactive youth workshops' },
+    { id: 44, src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800', title: 'Panel Discussion', category: 'Events', eventName: 'Youth Summit 2025', description: 'Youth leaders panel discussion' },
+    { id: 45, src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800', title: 'Networking Session', category: 'Events', eventName: 'Youth Summit 2025', description: 'Young leaders connecting' },
+
+    // Events - Annual Gala 2024
+    { id: 46, src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800', title: 'Gala Night', category: 'Events', eventName: 'Annual Gala 2024', description: 'Annual Gala celebration' },
+    { id: 47, src: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800', title: 'Award Winners', category: 'Events', eventName: 'Annual Gala 2024', description: 'Celebrating outstanding contributions' },
+    { id: 48, src: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800', title: 'Gala Dinner', category: 'Events', eventName: 'Annual Gala 2024', description: 'Elegant dinner event' },
+    { id: 49, src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800', title: 'Entertainment', category: 'Events', eventName: 'Annual Gala 2024', description: 'Live performances at gala' },
+
+    // Events - Sports Day 2024
+    { id: 50, src: 'https://images.unsplash.com/photo-1461896836934-fffceb642be4?w=800', title: 'Opening Parade', category: 'Events', eventName: 'Sports Day 2024', description: 'Sports Day opening march' },
+    { id: 51, src: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=800', title: 'Football Match', category: 'Events', eventName: 'Sports Day 2024', description: 'Community football tournament' },
+    { id: 52, src: 'https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=800', title: 'Track Events', category: 'Events', eventName: 'Sports Day 2024', description: 'Running competitions' },
+    { id: 53, src: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800', title: 'Victory Celebrations', category: 'Events', eventName: 'Sports Day 2024', description: 'Winners celebrating their achievements' },
+    { id: 54, src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800', title: 'Team Spirit', category: 'Events', eventName: 'Sports Day 2024', description: 'Teams showing unity' },
+
+    // Events - Cultural Festival 2024
+    { id: 55, src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800', title: 'Cultural Performances', category: 'Events', eventName: 'Cultural Festival 2024', description: 'Traditional dance performances' },
+    { id: 56, src: 'https://images.unsplash.com/photo-1504609813442-a9924e2e4e76?w=800', title: 'Art Exhibition', category: 'Events', eventName: 'Cultural Festival 2024', description: 'Local artists showcasing work' },
+    { id: 57, src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800', title: 'Music Stage', category: 'Events', eventName: 'Cultural Festival 2024', description: 'Live music performances' },
+    { id: 58, src: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800', title: 'Festival Crowd', category: 'Events', eventName: 'Cultural Festival 2024', description: 'Community enjoying the festival' },
+
+    // Events - Graduation Ceremony 2024
+    { id: 59, src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800', title: 'Graduation Day', category: 'Events', eventName: 'Graduation Ceremony 2024', description: 'Program graduates celebrating' },
+    { id: 60, src: 'https://images.unsplash.com/photo-1627556704302-624286467c65?w=800', title: 'Certificate Award', category: 'Events', eventName: 'Graduation Ceremony 2024', description: 'Receiving certificates of completion' },
+    { id: 61, src: 'https://images.unsplash.com/photo-1607013407627-6ee814329547?w=800', title: 'Group Photo', category: 'Events', eventName: 'Graduation Ceremony 2024', description: 'Graduating class group photo' },
+    { id: 62, src: 'https://images.unsplash.com/photo-1525921429624-479b6a26d84d?w=800', title: 'Family Celebrations', category: 'Events', eventName: 'Graduation Ceremony 2024', description: 'Families celebrating with graduates' },
   ];
 
   // Video gallery data
@@ -121,12 +180,21 @@ const Gallery = () => {
     { id: 4, title: 'Documentary Screening: Life in Mathare', date: '2026-01-25', time: '6:00 PM - 8:00 PM', location: 'Community Open Space', description: 'Premiere of new community documentary', category: 'Ghetto Stories' },
     { id: 5, title: 'Civic Education Forum', date: '2026-01-28', time: '2:00 PM - 5:00 PM', location: 'Mathare Community Center', description: 'Understanding your constitutional rights', category: 'Civic Education' },
     { id: 6, title: 'Mental Health Awareness Day', date: '2026-02-01', time: '9:00 AM - 3:00 PM', location: 'Resilience Center', description: 'Free counseling and mental health resources', category: 'Mathare Resilience' },
-    { id: 7, title: 'Community Research Presentation', date: '2026-02-05', time: '11:00 AM - 1:00 PM', location: 'Ghetto Foundation Office', description: 'Sharing findings from recent community research', category: 'Research' },
+    { id: 7, title: 'Community Research Presentation', date: '2026-02-05', time: '11:00 AM - 1:00 PM', location: 'Ghetto Foundation Office', description: 'Sharing findings from recent community research', category: 'Our Research' },
     { id: 8, title: 'Volunteer Training Day', date: '2026-02-10', time: '8:00 AM - 12:00 PM', location: 'Various Locations', description: 'Training new volunteers across all programs', category: 'All' },
   ];
 
+  // Get event photos for a specific event
+  const getEventPhotos = (eventName: string) => {
+    return galleryImages.filter(img => img.eventName === eventName);
+  };
+
   const filteredImages = activeCategory === 'All' 
-    ? galleryImages 
+    ? galleryImages.filter(img => img.category !== 'Events')
+    : activeCategory === 'Events'
+    ? selectedEventName 
+      ? galleryImages.filter(img => img.eventName === selectedEventName)
+      : []
     : galleryImages.filter(img => img.category === activeCategory);
 
   const filteredVideos = activeCategory === 'All'
@@ -156,6 +224,13 @@ const Gallery = () => {
     const newIndex = imageIndex === filteredImages.length - 1 ? 0 : imageIndex + 1;
     setImageIndex(newIndex);
     setSelectedImage(filteredImages[newIndex]);
+  };
+
+  const handleCategoryChange = (categoryName: string) => {
+    setActiveCategory(categoryName);
+    if (categoryName !== 'Events') {
+      setSelectedEventName(null);
+    }
   };
 
   const formatDate = (dateString: string) => {
@@ -193,7 +268,7 @@ const Gallery = () => {
                     key={category.name}
                     variant={isActive ? "default" : "ghost"}
                     size="sm"
-                    onClick={() => setActiveCategory(category.name)}
+                    onClick={() => handleCategoryChange(category.name)}
                     className={`
                       flex items-center gap-2 rounded-full px-3 sm:px-4 py-2 transition-all duration-300
                       ${isActive 
@@ -232,40 +307,155 @@ const Gallery = () => {
 
               {/* Photos Tab */}
               <TabsContent value="photos">
-                <div className="mb-4">
-                  <p className="text-gray-500 text-sm">
-                    Showing {filteredImages.length} {filteredImages.length === 1 ? 'photo' : 'photos'}
-                    {activeCategory !== 'All' && ` in ${activeCategory}`}
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
-                  {filteredImages.map((image, index) => (
-                    <div 
-                      key={image.id} 
-                      className="aspect-square relative group cursor-pointer overflow-hidden animate-fade-in rounded-lg"
-                      style={{ animationDelay: `${index * 0.03}s` }}
-                      onClick={() => openLightbox(image, index)}
-                    >
-                      <img
-                        src={image.src}
-                        alt={image.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-2">
-                          <ZoomIn className="w-8 h-8 text-white mx-auto mb-2" />
-                          <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">{image.title}</p>
-                        </div>
+                {/* Events Category - Show event sub-categories */}
+                {activeCategory === 'Events' && !selectedEventName && (
+                  <div className="animate-fade-in">
+                    <div className="mb-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <PartyPopper className="w-6 h-6 text-pink-500" />
+                        <h2 className="text-2xl font-bold text-white">Event Albums</h2>
                       </div>
-                      <Badge 
-                        className="absolute bottom-2 left-2 text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/70 text-white border-0"
-                      >
-                        {image.category}
-                      </Badge>
+                      <p className="text-gray-400">Select an event to view its photos</p>
                     </div>
-                  ))}
-                </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {eventCategories.map((event, index) => {
+                        const eventPhotos = getEventPhotos(event.name);
+                        return (
+                          <div
+                            key={event.name}
+                            className="group cursor-pointer overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 transition-all duration-300 animate-fade-in"
+                            style={{ animationDelay: `${index * 0.1}s` }}
+                            onClick={() => setSelectedEventName(event.name)}
+                          >
+                            <div className="relative aspect-video overflow-hidden">
+                              <img
+                                src={event.coverImage}
+                                alt={event.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                              <div className="absolute bottom-4 left-4 right-4">
+                                <h3 className="text-white font-bold text-lg group-hover:text-pink-400 transition-colors">
+                                  {event.name}
+                                </h3>
+                                <div className="flex items-center gap-3 mt-2 text-sm">
+                                  <span className="text-gray-300 flex items-center gap-1">
+                                    <Calendar className="w-4 h-4" />
+                                    {event.date}
+                                  </span>
+                                  <span className="text-gray-300 flex items-center gap-1">
+                                    <Camera className="w-4 h-4" />
+                                    {eventPhotos.length} photos
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-4 flex items-center justify-between">
+                              <Badge className="bg-pink-500/20 text-pink-400 border-pink-500/30">
+                                <Sparkles className="w-3 h-3 mr-1" />
+                                View Album
+                              </Badge>
+                              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-pink-400 transition-colors" />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Events Category - Show photos for selected event */}
+                {activeCategory === 'Events' && selectedEventName && (
+                  <div className="animate-fade-in">
+                    <div className="mb-6">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedEventName(null)}
+                        className="text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 mb-4"
+                      >
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Back to Events
+                      </Button>
+                      <div className="flex items-center gap-3">
+                        <PartyPopper className="w-6 h-6 text-pink-500" />
+                        <h2 className="text-2xl font-bold text-white">{selectedEventName}</h2>
+                      </div>
+                      <p className="text-gray-400 mt-1">
+                        {filteredImages.length} {filteredImages.length === 1 ? 'photo' : 'photos'} from this event
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+                      {filteredImages.map((image, index) => (
+                        <div 
+                          key={image.id} 
+                          className="aspect-square relative group cursor-pointer overflow-hidden animate-fade-in rounded-lg"
+                          style={{ animationDelay: `${index * 0.03}s` }}
+                          onClick={() => openLightbox(image, index)}
+                        >
+                          <img
+                            src={image.src}
+                            alt={image.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-2">
+                              <ZoomIn className="w-8 h-8 text-white mx-auto mb-2" />
+                              <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">{image.title}</p>
+                            </div>
+                          </div>
+                          <Badge 
+                            className="absolute bottom-2 left-2 text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-pink-500/80 text-white border-0"
+                          >
+                            {image.eventName}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Regular categories (not Events) */}
+                {activeCategory !== 'Events' && (
+                  <>
+                    <div className="mb-4">
+                      <p className="text-gray-500 text-sm">
+                        Showing {filteredImages.length} {filteredImages.length === 1 ? 'photo' : 'photos'}
+                        {activeCategory !== 'All' && ` in ${activeCategory}`}
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+                      {filteredImages.map((image, index) => (
+                        <div 
+                          key={image.id} 
+                          className="aspect-square relative group cursor-pointer overflow-hidden animate-fade-in rounded-lg"
+                          style={{ animationDelay: `${index * 0.03}s` }}
+                          onClick={() => openLightbox(image, index)}
+                        >
+                          <img
+                            src={image.src}
+                            alt={image.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-2">
+                              <ZoomIn className="w-8 h-8 text-white mx-auto mb-2" />
+                              <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">{image.title}</p>
+                            </div>
+                          </div>
+                          <Badge 
+                            className="absolute bottom-2 left-2 text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/70 text-white border-0"
+                          >
+                            {image.category}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
               </TabsContent>
 
               {/* Videos Tab */}
