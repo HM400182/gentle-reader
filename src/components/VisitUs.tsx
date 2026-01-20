@@ -74,7 +74,7 @@ const VisitUs = () => {
             <div className="flex items-center gap-3 text-muted-foreground">
               <MapPin className="h-5 w-5 text-community-warm shrink-0" />
               <address className="not-italic text-sm sm:text-base">
-                Ghetto Foundation, Kwa Mbao / Mathare, Nairobi, Kenya
+                Ghetto Foundation,Mathare , Nairobi, Kenya
               </address>
             </div>
 
