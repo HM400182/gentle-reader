@@ -34,11 +34,11 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* ✅ Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img
               src={logo}
               alt="Ghetto Foundation Logo"
-              className="h-10 w-auto"
+              className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-200"
             />
           </Link>
 
