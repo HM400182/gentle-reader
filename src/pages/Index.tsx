@@ -38,43 +38,49 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative hero-gradient text-white pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-32 min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center">
+      <section className="relative hero-gradient text-white pt-6 sm:pt-12 md:pt-16 lg:pt-20 pb-10 sm:pb-16 md:pb-20 lg:pb-32 min-h-[85vh] sm:min-h-[80vh] md:min-h-[85vh] flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 sm:space-y-8 animate-fade-in">
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight break-words drop-shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+            {/* Logo first on mobile for visual impact */}
+            <div className="order-1 lg:order-2 flex items-center justify-center w-full py-4 sm:py-0">
+              <div className="relative group">
+                {/* Glow effect background */}
+                <div className="absolute inset-0 bg-white/20 rounded-full blur-3xl scale-75 group-hover:scale-100 group-hover:bg-white/30 transition-all duration-500 animate-pulse" />
+                <img 
+                  src={logoImage}
+                  alt="Ghetto Foundation Logo" 
+                  className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 2xl:w-[28rem] 2xl:h-[28rem] object-contain drop-shadow-2xl animate-fade-in transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+                />
+              </div>
+            </div>
+            
+            {/* Text content */}
+            <div className="order-2 lg:order-1 space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in text-center lg:text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight break-words drop-shadow-lg">
                 Empowering Communities
                 <span className="block text-white mt-1 sm:mt-2">in Mathare, Nairobi</span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-2xl drop-shadow-md">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-md">
                 The Ghetto Foundation is dedicated to community-driven development, 
                 research, and sustainable change through education, innovation, and collaboration.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link to="/donate">
-                  <Button className="btn-hero bg-white text-community-warm hover:bg-gray-100">
+                  <Button className="btn-hero bg-white text-community-warm hover:bg-gray-100 w-full sm:w-auto">
                     Donate Now
                     <Heart className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
                 
                 <Link to="/news">
-                  <Button className="btn-outline border-white text-white hover:bg-white hover:text-community-warm">
+                  <Button className="btn-outline border-white text-white hover:bg-white hover:text-community-warm w-full sm:w-auto">
                     Announcements & News
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
               </div>
-            </div>
-            
-            <div className="flex items-center justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto lg:mx-0">
-              <img 
-                src={logoImage}
-                alt="Ghetto Foundation Logo" 
-                className="w-full h-auto max-h-[50vh] sm:max-h-[55vh] md:max-h-[60vh] lg:max-h-[65vh] xl:max-h-[70vh] object-contain drop-shadow-2xl animate-fade-in transition-all duration-300"
-              />
             </div>
 
           </div>
