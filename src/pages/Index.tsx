@@ -73,7 +73,7 @@ const Index = () => {
               <img 
                 src={logoImage}
                 alt="Ghetto Foundation Logo" 
-                className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-96 xl:h-96 object-contain drop-shadow-2xl animate-fade-in"
+                className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl animate-fade-in"
               />
             </div>
 

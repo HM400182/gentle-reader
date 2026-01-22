@@ -34,11 +34,11 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* ✅ Logo */}
-          <Link to="/" className="flex items-center space-x-2 flex-shrink-0 group">
+          <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img
               src={logo}
               alt="Ghetto Foundation Logo"
-              className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20 w-auto object-contain transition-all duration-300 group-hover:scale-110 group-hover:brightness-110"
+              className="h-10 w-auto object-contain"
             />
           </Link>
 
