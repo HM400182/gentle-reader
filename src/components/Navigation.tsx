@@ -26,6 +26,7 @@ const Navigation = () => {
       { to: "/programs/youth-leadership", label: "Youth Leadership" },
       { to: "/programs/civic-education", label: "Civic Education" },
       { to: "/programs/ghetto-stories", label: "Ghetto Stories" },
+      { to: "/programs/ghetto-youths", label: "Ghetto Youths" },
     ],
   };
 

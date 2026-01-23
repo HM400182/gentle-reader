@@ -20,6 +20,7 @@ import Research from "./pages/programs/Research";
 import YouthLeadership from "./pages/programs/YouthLeadership";
 import CivicEducation from "./pages/programs/CivicEducation";
 import GhettoStories from "./pages/programs/GhettoStories";
+import GhettoYouths from "./pages/programs/GhettoYouths";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/programs/youth-leadership" element={<YouthLeadership />} />
           <Route path="/programs/civic-education" element={<CivicEducation />} />
           <Route path="/programs/ghetto-stories" element={<GhettoStories />} />
+          <Route path="/programs/ghetto-youths" element={<GhettoYouths />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

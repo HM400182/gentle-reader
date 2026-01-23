@@ -2,6 +2,7 @@ import Layout from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Users, Star, Megaphone, BookOpen, Award, Target } from 'lucide-react';
+import heroImage from '@/assets/programs/youth-leadership-hero.jpg';
 
 const YouthLeadership = () => {
   const programs = [
@@ -61,16 +62,25 @@ const YouthLeadership = () => {
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        {/* Hero Section */}
-        <section className="relative py-20 px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <Badge variant="outline" className="mb-4 text-primary">
+        {/* Hero Section with Background Image */}
+        <section className="relative py-24 px-4 overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
+          
+          {/* Content */}
+          <div className="relative z-10 max-w-6xl mx-auto text-center">
+            <Badge variant="outline" className="mb-4 text-white border-white/50 bg-white/10">
               Leadership Development
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Youth Leadership
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
               Empowering young leaders in Mathare to drive positive change in their community 
               through skills development, mentorship, and hands-on leadership opportunities.
             </p>
