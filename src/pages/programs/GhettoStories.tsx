@@ -2,6 +2,7 @@ import Layout from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Mic, Camera, Heart, Users, Star } from 'lucide-react';
+import heroImage from '@/assets/programs/ghetto-stories-hero.jpg';
 
 const GhettoStories = () => {
   const storyTypes = [
@@ -88,16 +89,25 @@ const GhettoStories = () => {
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-        {/* Hero Section */}
-        <section className="relative py-20 px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <Badge variant="outline" className="mb-4 text-primary">
+        {/* Hero Section with Background Image */}
+        <section className="relative py-24 px-4 overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
+          
+          {/* Content */}
+          <div className="relative z-10 max-w-6xl mx-auto text-center">
+            <Badge variant="outline" className="mb-4 text-white border-white/50 bg-white/10">
               Community Narratives
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Ghetto Stories
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
               Amplifying the voices, experiences, and wisdom of Mathare community members 
               through authentic storytelling that challenges stereotypes and celebrates resilience.
             </p>
