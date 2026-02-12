@@ -21,6 +21,10 @@ import YouthLeadership from "./pages/programs/YouthLeadership";
 import CivicEducation from "./pages/programs/CivicEducation";
 import GhettoStories from "./pages/programs/GhettoStories";
 import GhettoYouths from "./pages/programs/GhettoYouths";
+import Volunteer from "./pages/Volunteer";
+import Events from "./pages/Events";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +43,10 @@ const App = () => (
           <Route path="/donate" element={<Donate />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/news" element={<News />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/programs/mathare-resilience" element={<MathareResilience />} />
           <Route path="/programs/digital-associates" element={<DigitalAssociates />} />
           <Route path="/programs/community-projects" element={<CommunityProjects />} />
@@ -47,7 +55,6 @@ const App = () => (
           <Route path="/programs/civic-education" element={<CivicEducation />} />
           <Route path="/programs/ghetto-stories" element={<GhettoStories />} />
           <Route path="/programs/ghetto-youths" element={<GhettoYouths />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

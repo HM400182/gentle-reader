@@ -128,6 +128,20 @@ const Navigation = () => {
             </Link>
 
             <Link
+              to="/volunteer"
+              className={`nav-link ${isActive("/volunteer") ? "nav-link-active" : ""}`}
+            >
+              Volunteer
+            </Link>
+
+            <Link
+              to="/events"
+              className={`nav-link ${isActive("/events") ? "nav-link-active" : ""}`}
+            >
+              Events
+            </Link>
+
+            <Link
               to="/contact"
               className={`nav-link ${isActive("/contact") ? "nav-link-active" : ""}`}
             >
@@ -220,6 +234,24 @@ const Navigation = () => {
                 }`}
               >
                 News
+              </Link>
+
+              <Link
+                to="/volunteer"
+                className={`block py-2 nav-link ${
+                  isActive("/volunteer") ? "nav-link-active" : ""
+                }`}
+              >
+                Volunteer
+              </Link>
+
+              <Link
+                to="/events"
+                className={`block py-2 nav-link ${
+                  isActive("/events") ? "nav-link-active" : ""
+                }`}
+              >
+                Events
               </Link>
 
               <Link
