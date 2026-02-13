@@ -14,6 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          is_read: boolean
+          last_name: string
+          message: string
+          phone: string | null
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          is_read?: boolean
+          last_name: string
+          message: string
+          phone?: string | null
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          is_read?: boolean
+          last_name?: string
+          message?: string
+          phone?: string | null
+          subject?: string
+        }
+        Relationships: []
+      }
+      donations: {
+        Row: {
+          amount: number | null
+          created_at: string
+          currency: string | null
+          donor_name: string | null
+          email: string | null
+          id: string
+          message: string | null
+          method: string | null
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          currency?: string | null
+          donor_name?: string | null
+          email?: string | null
+          id?: string
+          message?: string | null
+          method?: string | null
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          currency?: string | null
+          donor_name?: string | null
+          email?: string | null
+          id?: string
+          message?: string | null
+          method?: string | null
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           created_at: string
@@ -50,6 +119,39 @@ export type Database = {
           location?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          display_order: number | null
+          id: string
+          image_url: string
+          is_published: boolean
+          title: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url: string
+          is_published?: boolean
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string
+          is_published?: boolean
+          title?: string
         }
         Relationships: []
       }
@@ -110,6 +212,111 @@ export type Database = {
           full_name?: string | null
           id?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      programs: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_order: number | null
+          id: string
+          image_url: string | null
+          is_published: boolean
+          slug: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          slug?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          slug?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      sponsors: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_order: number | null
+          id: string
+          is_published: boolean
+          logo_url: string | null
+          name: string
+          tier: string
+          website_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          is_published?: boolean
+          logo_url?: string | null
+          name: string
+          tier?: string
+          website_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          is_published?: boolean
+          logo_url?: string | null
+          name?: string
+          tier?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          bio: string | null
+          created_at: string
+          display_order: number | null
+          email: string | null
+          id: string
+          image_url: string | null
+          is_published: boolean
+          name: string
+          role: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number | null
+          email?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          name: string
+          role: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number | null
+          email?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          name?: string
+          role?: string
         }
         Relationships: []
       }
