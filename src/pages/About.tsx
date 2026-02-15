@@ -1,158 +1,244 @@
 
+import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
-import { Card, CardContent } from '@/components/ui/card';
 import { Target, Eye, Heart, Users, Lightbulb, MapPin } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import mathareAerial from '@/assets/mathare-aerial.jpg';
+
+const placeholderMembers = [
+  { id: '1', name: 'James Ochieng', role: 'Executive Director', bio: 'Leading community transformation in Mathare for over a decade.', image_url: null },
+  { id: '2', name: 'Amina Wanjiku', role: 'Programs Manager', bio: 'Oversees all community programs and partnerships.', image_url: null },
+  { id: '3', name: 'Brian Otieno', role: 'Research Lead', bio: 'Drives data-driven solutions for community challenges.', image_url: null },
+  { id: '4', name: 'Faith Muthoni', role: 'Youth Coordinator', bio: 'Empowering young people through mentorship and training.', image_url: null },
+  { id: '5', name: 'David Kamau', role: 'Finance Officer', bio: 'Ensures transparency and accountability in all operations.', image_url: null },
+  { id: '6', name: 'Grace Akinyi', role: 'Communications Lead', bio: 'Amplifying community voices through storytelling.', image_url: null },
+  { id: '7', name: 'Peter Njoroge', role: 'Digital Programs Lead', bio: 'Building digital literacy across the community.', image_url: null },
+  { id: '8', name: 'Lucy Wambui', role: 'Community Outreach', bio: 'Connecting residents with resources and opportunities.', image_url: null },
+  { id: '9', name: 'Samuel Kiprop', role: 'Civic Education Officer', bio: 'Promoting civic participation and governance awareness.', image_url: null },
+  { id: '10', name: 'Diana Njeri', role: 'Volunteer Coordinator', bio: 'Managing our dedicated volunteer network.', image_url: null },
+];
 
 const About = () => {
-  const values = [
-    {
-      icon: Heart,
-      title: "Community First",
-      description: "Every decision we make prioritizes the needs and voices of the Mathare community."
-    },
-    {
-      icon: Users,
-      title: "Inclusive Participation",
-      description: "We believe in the power of collective action and ensure everyone has a voice."
-    },
-    {
-      icon: Lightbulb,
-      title: "Innovation & Research",
-      description: "Data-driven solutions and community-led research guide our approach."
-    },
-    {
-      icon: Target,
-      title: "Sustainable Impact",
-      description: "We focus on long-term solutions that create lasting positive change."
-    }
-  ];
+  const [members, setMembers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      const { data } = await supabase
+        .from('team_members')
+        .select('*')
+        .eq('is_published', true)
+        .order('display_order', { ascending: true });
+      setMembers(data && data.length > 0 ? data : placeholderMembers);
+      setLoading(false);
+    };
+    fetchTeam();
+  }, []);
+
+  const getInitials = (name: string) => {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  };
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-community-warm/10 to-community-nature/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-gray-900 mb-6">About Ghetto Foundation</h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Founded on the belief that every community has the power to transform itself, 
-              the Ghetto Foundation works hand-in-hand with residents of Mathare to create 
-              sustainable change through research, education, and community-driven initiatives.
-            </p>
-          </div>
+      {/* Hero with Mathare aerial bg */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <img src={mathareAerial} alt="Mathare aerial view" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 py-20 animate-fade-in">
+          <h1 className="text-white mb-6 drop-shadow-lg">About Ghetto Foundation</h1>
+          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Founded on the belief that every community has the power to transform itself,
+            we work hand-in-hand with residents of Mathare to create sustainable change.
+          </p>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in">
-              <h2 className="text-gray-900 mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]">
+          <img src={mathareAerial} alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="animate-fade-in space-y-6">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-2">
+                Our Story
+              </div>
+              <h2 className="text-foreground">From Grassroots to Impact</h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  The Ghetto Foundation emerged from a deep understanding that lasting change 
-                  comes from within communities themselves. Founded by residents and supporters 
-                  who believed in the untapped potential of Mathare, we began as a grassroots 
+                  The Ghetto Foundation emerged from a deep understanding that lasting change
+                  comes from within communities themselves. Founded by residents and supporters
+                  who believed in the untapped potential of Mathare, we began as a grassroots
                   movement focused on education and community empowerment.
                 </p>
                 <p>
-                  Over the years, we've grown into a comprehensive organization that addresses 
-                  multiple facets of community development - from vocational training and 
-                  digital literacy to research and civic education. Our approach remains 
-                  unchanged: listen to the community, research the challenges, and implement 
-                  solutions together.
-                </p>
-                <p>
-                  Today, we continue to evolve, always guided by the voices and needs of 
-                  the people we serve. Every program, every initiative, and every decision 
-                  reflects our commitment to community-led development.
+                  Over the years, we've grown into a comprehensive organization addressing
+                  multiple facets of community development — from vocational training and
+                  digital literacy to research and civic education.
                 </p>
               </div>
             </div>
-            
+
             <div className="animate-slide-up">
-              <Card className="community-card p-8">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-community-warm mx-auto mb-6" />
-                  <h3 className="text-gray-900 mb-4">Located in Mathare</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Mathare is one of Nairobi's largest informal settlements, home to over 
-                    200,000 residents. It's a vibrant community with incredible potential, 
-                    facing challenges that require innovative, community-driven solutions.
-                  </p>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img src={mathareAerial} alt="Mathare community" className="w-full h-80 object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="w-5 h-5 text-primary" />
+                    <span className="font-semibold">Mathare, Nairobi</span>
+                  </div>
+                  <p className="text-sm text-white/80">Home to over 200,000 resilient residents</p>
                 </div>
-              </Card>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <Card className="community-card p-8 animate-fade-in">
-              <Target className="w-12 h-12 text-community-warm mb-6" />
-              <h3 className="text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
-                To empower the Mathare community through sustainable development initiatives, 
-                community-led research, and educational programs that create lasting positive 
+      {/* Mission & Vision with bg image */}
+      <section className="relative py-24 overflow-hidden">
+        <img src={mathareAerial} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/75" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 animate-fade-in">
+              <Target className="w-12 h-12 text-primary mb-6" />
+              <h3 className="text-white mb-4">Our Mission</h3>
+              <p className="text-white/85 leading-relaxed">
+                To empower the Mathare community through sustainable development initiatives,
+                community-led research, and educational programs that create lasting positive
                 impact and foster self-reliance.
               </p>
-            </Card>
-            
-            <Card className="community-card p-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <Eye className="w-12 h-12 text-community-nature mb-6" />
-              <h3 className="text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
-                A thriving, self-sustaining Mathare community where every individual has 
-                access to quality education, economic opportunities, and the resources 
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <Eye className="w-12 h-12 text-secondary mb-6" />
+              <h3 className="text-white mb-4">Our Vision</h3>
+              <p className="text-white/85 leading-relaxed">
+                A thriving, self-sustaining Mathare community where every individual has
+                access to quality education, economic opportunities, and the resources
                 needed to reach their full potential.
               </p>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Our Values */}
+      {/* Values */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-gray-900 mb-4">Our Values</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              These core values guide everything we do and shape how we work with the community.
-            </p>
+          <div className="text-center mb-14 animate-fade-in">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">
+              What Drives Us
+            </div>
+            <h2 className="text-foreground mb-4">Our Core Values</h2>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="community-card p-6 text-center animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-0">
-                  <value.icon className="w-12 h-12 text-community-warm mx-auto mb-4" />
-                  <h4 className="text-gray-900 mb-3">{value.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Heart, title: "Community First", desc: "Every decision prioritizes the needs and voices of the Mathare community." },
+              { icon: Users, title: "Inclusive Participation", desc: "We believe in collective action and ensure everyone has a voice." },
+              { icon: Lightbulb, title: "Innovation & Research", desc: "Data-driven solutions and community-led research guide our approach." },
+              { icon: Target, title: "Sustainable Impact", desc: "Long-term solutions that create lasting positive change." },
+            ].map((v, i) => (
+              <div key={i} className="group text-center p-6 rounded-2xl bg-card border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-slide-up" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                  <v.icon className="w-7 h-7 text-primary" />
+                </div>
+                <h4 className="text-foreground mb-2 text-lg font-semibold">{v.title}</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Community-Led Research Approach */}
-      <section className="py-20 bg-gradient-to-r from-community-nature to-community-trust text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 animate-fade-in">
-          <h2 className="text-white mb-6">Community-Led Research & Action (CLRA)</h2>
-          <p className="text-xl text-white/90 mb-8 leading-relaxed">
-            At the heart of our methodology is CLRA - an approach that ensures community 
-            members are not just beneficiaries but active researchers and decision-makers 
-            in identifying challenges and developing solutions.
+      {/* CLRA */}
+      <section className="relative py-20 overflow-hidden">
+        <img src={mathareAerial} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--community-nature))]/90 to-[hsl(var(--community-trust))]/90" />
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 animate-fade-in">
+          <h2 className="text-white mb-6">Community-Led Research & Action</h2>
+          <p className="text-xl text-white/90 mb-6 leading-relaxed">
+            At the heart of our methodology is CLRA — ensuring community members are not just
+            beneficiaries but active researchers and decision-makers.
           </p>
           <p className="text-white/80 leading-relaxed">
-            This participatory approach means that every program we implement is grounded 
-            in real community needs, backed by local research, and designed for sustainability 
-            by the very people it serves.
+            Every program we implement is grounded in real community needs, backed by local
+            research, and designed for sustainability by the very people it serves.
           </p>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14 animate-fade-in">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+              The People Behind The Mission
+            </div>
+            <h2 className="text-foreground mb-4">Our Team</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Meet the passionate individuals who work tirelessly to empower the Mathare community.
+            </p>
+          </div>
+
+          {loading ? (
+            <p className="text-center text-muted-foreground py-16">Loading team...</p>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+              {members.map((member, index) => (
+                <div
+                  key={member.id}
+                  className="flex flex-col items-center text-center group animate-slide-up"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  {/* Circular photo with hover expand */}
+                  <div className="relative mb-4">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/60 transition-all duration-500 group-hover:w-36 group-hover:h-36 sm:group-hover:w-40 sm:group-hover:h-40 group-hover:rounded-2xl group-hover:shadow-2xl">
+                      {member.image_url ? (
+                        <img
+                          src={member.image_url}
+                          alt={member.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center">
+                          <span className="text-2xl sm:text-3xl font-bold text-primary/70">
+                            {getInitials(member.name)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <h4 className="text-foreground font-semibold text-sm sm:text-base leading-tight">{member.name}</h4>
+                  <p className="text-primary text-xs sm:text-sm font-medium mt-1">{member.role}</p>
+                  {member.bio && (
+                    <p className="text-muted-foreground text-xs mt-2 leading-relaxed max-w-[160px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {member.bio}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Join */}
+      <section className="relative py-20 overflow-hidden">
+        <img src={mathareAerial} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/80" />
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 animate-fade-in">
+          <h2 className="text-white mb-6">Join Our Mission</h2>
+          <p className="text-xl text-white/90 mb-8 leading-relaxed">
+            Are you passionate about community development and social change?
+            We're always looking for dedicated individuals to join our team.
+          </p>
+          <a href="mailto:careers@ghettofoundation.org" className="btn-hero inline-block">
+            Get In Touch
+          </a>
         </div>
       </section>
     </Layout>
