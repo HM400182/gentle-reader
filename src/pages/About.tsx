@@ -1,43 +1,9 @@
 
-import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { Target, Eye, Heart, Users, Lightbulb, MapPin } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import mathareAerial from '@/assets/mathare-aerial.jpg';
 
-const placeholderMembers = [
-  { id: '1', name: 'James Ochieng', role: 'Executive Director', bio: 'Leading community transformation in Mathare for over a decade.', image_url: null },
-  { id: '2', name: 'Amina Wanjiku', role: 'Programs Manager', bio: 'Oversees all community programs and partnerships.', image_url: null },
-  { id: '3', name: 'Brian Otieno', role: 'Research Lead', bio: 'Drives data-driven solutions for community challenges.', image_url: null },
-  { id: '4', name: 'Faith Muthoni', role: 'Youth Coordinator', bio: 'Empowering young people through mentorship and training.', image_url: null },
-  { id: '5', name: 'David Kamau', role: 'Finance Officer', bio: 'Ensures transparency and accountability in all operations.', image_url: null },
-  { id: '6', name: 'Grace Akinyi', role: 'Communications Lead', bio: 'Amplifying community voices through storytelling.', image_url: null },
-  { id: '7', name: 'Peter Njoroge', role: 'Digital Programs Lead', bio: 'Building digital literacy across the community.', image_url: null },
-  { id: '8', name: 'Lucy Wambui', role: 'Community Outreach', bio: 'Connecting residents with resources and opportunities.', image_url: null },
-  { id: '9', name: 'Samuel Kiprop', role: 'Civic Education Officer', bio: 'Promoting civic participation and governance awareness.', image_url: null },
-  { id: '10', name: 'Diana Njeri', role: 'Volunteer Coordinator', bio: 'Managing our dedicated volunteer network.', image_url: null },
-];
-
 const About = () => {
-  const [members, setMembers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchTeam = async () => {
-      const { data } = await supabase
-        .from('team_members')
-        .select('*')
-        .eq('is_published', true)
-        .order('display_order', { ascending: true });
-      setMembers(data && data.length > 0 ? data : placeholderMembers);
-      setLoading(false);
-    };
-    fetchTeam();
-  }, []);
-
-  const getInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
-  };
 
   return (
     <Layout>
@@ -168,61 +134,6 @@ const About = () => {
             Every program we implement is grounded in real community needs, backed by local
             research, and designed for sustainability by the very people it serves.
           </p>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14 animate-fade-in">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-              The People Behind The Mission
-            </div>
-            <h2 className="text-foreground mb-4">Our Team</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Meet the passionate individuals who work tirelessly to empower the Mathare community.
-            </p>
-          </div>
-
-          {loading ? (
-            <p className="text-center text-muted-foreground py-16">Loading team...</p>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-              {members.map((member, index) => (
-                <div
-                  key={member.id}
-                  className="flex flex-col items-center text-center group animate-slide-up"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  {/* Circular photo with hover expand */}
-                  <div className="relative mb-4">
-                    <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/60 transition-all duration-500 group-hover:w-36 group-hover:h-36 sm:group-hover:w-40 sm:group-hover:h-40 group-hover:rounded-2xl group-hover:shadow-2xl">
-                      {member.image_url ? (
-                        <img
-                          src={member.image_url}
-                          alt={member.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center">
-                          <span className="text-2xl sm:text-3xl font-bold text-primary/70">
-                            {getInitials(member.name)}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <h4 className="text-foreground font-semibold text-sm sm:text-base leading-tight">{member.name}</h4>
-                  <p className="text-primary text-xs sm:text-sm font-medium mt-1">{member.role}</p>
-                  {member.bio && (
-                    <p className="text-muted-foreground text-xs mt-2 leading-relaxed max-w-[160px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {member.bio}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
