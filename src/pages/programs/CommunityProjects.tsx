@@ -3,6 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Lightbulb, Heart, Recycle, GraduationCap, Home, Utensils, Users, Target, RefreshCw } from 'lucide-react';
 import heroImage from '@/assets/programs/community-projects-hero.jpg';
+import educationImg from '@/assets/programs/community-education.jpg';
+import kitchenImg from '@/assets/programs/community-kitchen.jpg';
+import wasteImg from '@/assets/programs/community-waste.jpg';
+import housingImg from '@/assets/programs/community-housing.jpg';
+import healthImg from '@/assets/programs/community-health.jpg';
+import innovationImg from '@/assets/programs/community-innovation.jpg';
 
 const CommunityProjects = () => {
   const projects = [
@@ -11,42 +17,48 @@ const CommunityProjects = () => {
       title: "Education Support",
       description: "Providing school supplies, tutoring, and scholarship opportunities for local students.",
       status: "Active",
-      impact: "200+ students supported"
+      impact: "200+ students supported",
+      image: educationImg
     },
     {
       icon: Utensils,
       title: "Community Kitchen",
       description: "Nutritional programs and food security initiatives for vulnerable families.",
       status: "Active", 
-      impact: "150+ families fed monthly"
+      impact: "150+ families fed monthly",
+      image: kitchenImg
     },
     {
       icon: Recycle,
       title: "Waste Management",
       description: "Community-led recycling and waste reduction programs for environmental sustainability.",
       status: "Planning",
-      impact: "5 tons waste diverted monthly"
+      impact: "5 tons waste diverted monthly",
+      image: wasteImg
     },
     {
       icon: Home,
       title: "Housing Improvement",
       description: "Supporting families with basic home repairs and infrastructure improvements.",
       status: "Active",
-      impact: "50+ homes improved"
+      impact: "50+ homes improved",
+      image: housingImg
     },
     {
       icon: Heart,
       title: "Health & Wellness",
       description: "Community health education and basic medical support services.",
       status: "Active",
-      impact: "300+ health screenings"
+      impact: "300+ health screenings",
+      image: healthImg
     },
     {
       icon: Lightbulb,
       title: "Innovation Hub",
       description: "Supporting local entrepreneurs and innovation through mentorship and resources.",
       status: "Development",
-      impact: "20+ startups supported"
+      impact: "20+ startups supported",
+      image: innovationImg
     }
   ];
 
@@ -143,17 +155,24 @@ const CommunityProjects = () => {
               {projects.map((project, index) => {
                 const Icon = project.icon;
                 return (
-                  <Card key={index} className="hover-card h-full">
+                  <Card key={index} className="hover-card h-full overflow-hidden">
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <Badge className={`absolute top-3 right-3 text-xs ${getStatusColor(project.status)}`}>
+                        {project.status}
+                      </Badge>
+                    </div>
                     <CardHeader>
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <Icon className="w-6 h-6 text-primary" />
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Icon className="w-5 h-5 text-primary" />
                         </div>
-                        <Badge className={`text-xs ${getStatusColor(project.status)}`}>
-                          {project.status}
-                        </Badge>
+                        <CardTitle className="text-lg">{project.title}</CardTitle>
                       </div>
-                      <CardTitle className="text-lg">{project.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">{project.description}</p>
