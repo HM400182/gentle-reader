@@ -166,18 +166,18 @@ const DigitalAssociates = () => {
                 <CardContent className="p-6">
                   <div className="relative mb-6">
                     <img
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face"
-                      alt="Mary Akinyi"
+                      src="/src/assets/Gemini_Generated_Image_tb938vtb938vtb93.png"
+                      alt="Hillary Mukaka"
                       className="w-24 h-24 rounded-full mx-auto object-cover"
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-lg font-semibold mb-2">Mary Akinyi</h3>
-                    <p className="text-primary font-medium mb-3">Digital Associates Manager</p>
+                    <h3 className="text-lg font-semibold mb-2">Hillary Mukaka</h3>
+                    <p className="text-primary font-medium mb-3">Software Eng</p>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Mary leads our Digital Associates program, helping community members develop digital literacy and data collection skills.
+                      Hillary is a software engineer who develops and maintains our data collection,website and analysis tools.
                     </p>
-                    <div className="text-xs text-muted-foreground">📍 Mathare, Nairobi</div>
+                    <div className="text-xs text-muted-foreground">📍  Nairobi,Kenya</div>
                   </div>
                 </CardContent>
               </Card>

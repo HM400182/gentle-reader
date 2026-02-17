@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Lightbulb, Heart, Recycle, GraduationCap, Home, Utensils, Users, Target, RefreshCw } from 'lucide-react';
-import heroImage from '@/assets/programs/community-projects-hero.jpg';
+import heroImage from '@/assets/free.jpeg';
 import educationImg from '@/assets/programs/community-education.jpg';
 import kitchenImg from '@/assets/programs/community-kitchen.jpg';
 import wasteImg from '@/assets/programs/community-waste.jpg';
