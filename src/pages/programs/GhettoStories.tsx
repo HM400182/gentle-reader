@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Mic, Camera, Heart, Users, Star } from 'lucide-react';
 import heroImage from '@/assets/programs/ghetto-stories-hero.jpg';
+import ujiImage1 from '@/assets/programs/uji-sato-1.jpg';
+import ujiImage2 from '@/assets/programs/uji-sato-2.jpg';
 
 const GhettoStories = () => {
   const storyTypes = [
@@ -327,6 +329,72 @@ const GhettoStories = () => {
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">4</div>
                 <p className="text-sm text-muted-foreground">Years Collecting Stories</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Uji Sato Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge variant="outline" className="mb-4">Community Feeding</Badge>
+              <h2 className="text-3xl font-bold mb-4">Uji Sato</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Nourishing the community through communal porridge cooking — bringing people together 
+                while addressing food insecurity in Mathare.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="group relative overflow-hidden rounded-2xl shadow-xl">
+                <img 
+                  src={ujiImage1} 
+                  alt="Uji porridge cooking over open fire for the Mathare community" 
+                  className="w-full h-80 md:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <p className="absolute bottom-4 left-4 text-white font-medium text-sm">
+                  Community porridge cooking in Mathare
+                </p>
+              </div>
+              <div className="group relative overflow-hidden rounded-2xl shadow-xl">
+                <img 
+                  src={ujiImage2} 
+                  alt="Serving porridge to children in the Mathare community" 
+                  className="w-full h-80 md:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <p className="absolute bottom-4 left-4 text-white font-medium text-sm">
+                  Serving the young ones of Mathare
+                </p>
+              </div>
+            </div>
+
+            <Card className="border-2 border-primary/20 bg-gradient-to-r from-primary/5 to-transparent mb-8">
+              <CardHeader>
+                <CardTitle className="text-2xl mb-4">What is Uji Sato?</CardTitle>
+                <CardDescription className="text-lg">
+                  Uji Sato is a community-led feeding initiative where large pots of nutritious porridge 
+                  (uji) are prepared and shared among community members, especially children and the elderly. 
+                  More than just a meal, it is a gathering point that strengthens bonds, fosters solidarity, 
+                  and ensures that no one in Mathare goes hungry.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">200+</div>
+                <p className="text-sm text-muted-foreground">People Fed Weekly</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">30+</div>
+                <p className="text-sm text-muted-foreground">Active Volunteers</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">52</div>
+                <p className="text-sm text-muted-foreground">Weeks Per Year</p>
               </div>
             </div>
           </div>
