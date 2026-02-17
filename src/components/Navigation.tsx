@@ -27,6 +27,7 @@ const Navigation = () => {
       { to: "/programs/civic-education", label: "Civic Education" },
       { to: "/programs/ghetto-stories", label: "Ghetto Stories" },
       { to: "/programs/ghetto-youths", label: "Ghetto Youths" },
+      { to: "/programs/uji-sato", label: "Uji Sato" },
     ],
   };
 

@@ -26,6 +26,7 @@ import Volunteer from "./pages/Volunteer";
 import Events from "./pages/Events";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import ResetPassword from "./pages/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/events" element={<Events />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/reset-password" element={<ResetPassword />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/programs/mathare-resilience" element={<MathareResilience />} />
           <Route path="/programs/digital-associates" element={<DigitalAssociates />} />
