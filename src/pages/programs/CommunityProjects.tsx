@@ -1,14 +1,14 @@
 import Layout from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Lightbulb, Heart, Recycle, GraduationCap, Home, Utensils, Users, Target, RefreshCw } from 'lucide-react';
+import { Lightbulb, Recycle, GraduationCap, Utensils, Users, Target, RefreshCw, Briefcase } from 'lucide-react';
 import heroImage from '@/assets/programs/community-projects-hero.jpg';
 import educationImg from '@/assets/programs/community-education.jpg';
 import kitchenImg from '@/assets/programs/community-kitchen.jpg';
 import wasteImg from '@/assets/programs/community-waste.jpg';
-import housingImg from '@/assets/programs/community-housing.jpg';
-import healthImg from '@/assets/programs/community-health.jpg';
 import innovationImg from '@/assets/programs/community-innovation.jpg';
+import youthBusinessImg from '@/assets/programs/community-youth-business.jpg';
+import ujiImage1 from '@/assets/programs/uji-sato-1.jpg';
 
 const CommunityProjects = () => {
   const projects = [
@@ -37,20 +37,20 @@ const CommunityProjects = () => {
       image: wasteImg
     },
     {
-      icon: Home,
-      title: "Housing Improvement",
-      description: "Supporting families with basic home repairs and infrastructure improvements.",
+      icon: Briefcase,
+      title: "Youth Training in Business Ideas",
+      description: "Equipping young people with entrepreneurship skills, business planning, and mentorship to create sustainable livelihoods.",
       status: "Active",
-      impact: "50+ homes improved",
-      image: housingImg
+      impact: "100+ youth trained",
+      image: youthBusinessImg
     },
     {
-      icon: Heart,
-      title: "Health & Wellness",
-      description: "Community health education and basic medical support services.",
+      icon: Utensils,
+      title: "Uji Sato",
+      description: "Community-led feeding initiative providing nutritious porridge to children, the elderly, and vulnerable families in Mathare.",
       status: "Active",
-      impact: "300+ health screenings",
-      image: healthImg
+      impact: "200+ people fed weekly",
+      image: ujiImage1
     },
     {
       icon: Lightbulb,
