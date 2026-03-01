@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { Calendar, Users, Newspaper, LogOut, Plus, Trash2, LayoutDashboard, Image, UserCheck, Handshake, BookOpen, DollarSign, Mail, Eye } from 'lucide-react';
+import { Calendar, Users, Newspaper, LogOut, Plus, Trash2, LayoutDashboard, Image, UserCheck, Handshake, DollarSign, Mail, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -25,7 +25,6 @@ const AdminDashboard = () => {
   const [gallery, setGallery] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
   const [sponsors, setSponsors] = useState<any[]>([]);
-  const [programs, setPrograms] = useState<any[]>([]);
   const [donations, setDonations] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
 
@@ -35,7 +34,7 @@ const AdminDashboard = () => {
   const [galleryForm, setGalleryForm] = useState({ title: '', image_url: '', category: 'General', description: '', is_published: true });
   const [teamForm, setTeamForm] = useState({ name: '', role: '', image_url: '', bio: '', email: '', is_published: true });
   const [sponsorForm, setSponsorForm] = useState({ name: '', description: '', logo_url: '', website_url: '', tier: 'partner', is_published: true });
-  const [programForm, setProgramForm] = useState({ title: '', description: '', slug: '', image_url: '', is_published: true });
+  
   const [donationForm, setDonationForm] = useState({ donor_name: '', email: '', amount: '', currency: 'KES', method: '', message: '' });
 
   // Image upload state
@@ -54,14 +53,13 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   const fetchAll = async () => {
-    const [v, e, n, g, t, s, p, d, c] = await Promise.all([
+    const [v, e, n, g, t, s, d, c] = await Promise.all([
       supabase.from('volunteers').select('*').order('created_at', { ascending: false }),
       supabase.from('events').select('*').order('event_date', { ascending: false }),
       supabase.from('news').select('*').order('created_at', { ascending: false }),
       supabase.from('gallery_images').select('*').order('created_at', { ascending: false }),
       supabase.from('team_members').select('*').order('display_order', { ascending: true }),
       supabase.from('sponsors').select('*').order('display_order', { ascending: true }),
-      supabase.from('programs').select('*').order('display_order', { ascending: true }),
       supabase.from('donations').select('*').order('created_at', { ascending: false }),
       supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
     ]);
@@ -71,7 +69,6 @@ const AdminDashboard = () => {
     setGallery(g.data || []);
     setTeam(t.data || []);
     setSponsors(s.data || []);
-    setPrograms(p.data || []);
     setDonations(d.data || []);
     setContacts(c.data || []);
   };
@@ -160,7 +157,7 @@ const AdminDashboard = () => {
             <TabsTrigger value="gallery"><Image className="w-4 h-4 mr-1" />Gallery</TabsTrigger>
             <TabsTrigger value="team"><UserCheck className="w-4 h-4 mr-1" />Team</TabsTrigger>
             <TabsTrigger value="sponsors"><Handshake className="w-4 h-4 mr-1" />Sponsors</TabsTrigger>
-            <TabsTrigger value="programs"><BookOpen className="w-4 h-4 mr-1" />Programs</TabsTrigger>
+            
             <TabsTrigger value="events"><Calendar className="w-4 h-4 mr-1" />Events</TabsTrigger>
             <TabsTrigger value="news"><Newspaper className="w-4 h-4 mr-1" />News</TabsTrigger>
             <TabsTrigger value="volunteers"><Users className="w-4 h-4 mr-1" />Volunteers</TabsTrigger>
@@ -306,42 +303,7 @@ const AdminDashboard = () => {
             </div>
           </TabsContent>
 
-          {/* ===== PROGRAMS TAB ===== */}
-          <TabsContent value="programs">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader><CardTitle className="flex items-center gap-2"><Plus className="w-5 h-5" />Add Program</CardTitle></CardHeader>
-                <CardContent>
-                  <form onSubmit={e => { e.preventDefault(); addItem('programs', programForm, () => setProgramForm({ title: '', description: '', slug: '', image_url: '', is_published: true }), ['title']); }} className="space-y-4">
-                    <div><Label>Title *</Label><Input value={programForm.title} onChange={e => setProgramForm(f => ({ ...f, title: e.target.value }))} required /></div>
-                    <div><Label>Description</Label><Textarea value={programForm.description} onChange={e => setProgramForm(f => ({ ...f, description: e.target.value }))} /></div>
-                    <div><Label>Slug (URL path)</Label><Input value={programForm.slug} onChange={e => setProgramForm(f => ({ ...f, slug: e.target.value }))} placeholder="e.g. youth-leadership" /></div>
-                    <div>
-                      <Label>Image</Label>
-                      <Input type="file" accept="image/*" onChange={e => handleImageUpload(e, url => setProgramForm(f => ({ ...f, image_url: url })), 'programs')} />
-                      {programForm.image_url && <img src={programForm.image_url} alt="Preview" className="mt-2 h-24 object-cover rounded" />}
-                    </div>
-                    <Button type="submit" className="w-full btn-hero" disabled={uploading}>{uploading ? 'Uploading...' : 'Add Program'}</Button>
-                  </form>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader><CardTitle>Programs ({programs.length})</CardTitle></CardHeader>
-                <CardContent>
-                  {programs.length === 0 ? <p className="text-muted-foreground text-center py-8">No programs yet.</p> : (
-                    <div className="space-y-3 max-h-[500px] overflow-y-auto">
-                      {programs.map(p => (
-                        <div key={p.id} className="border rounded-lg p-3 flex items-center justify-between">
-                          <div><h4 className="font-medium text-sm">{p.title}</h4>{p.slug && <p className="text-xs text-muted-foreground">/{p.slug}</p>}</div>
-                          <Button variant="ghost" size="sm" onClick={() => deleteItem('programs', p.id)}><Trash2 className="w-4 h-4 text-destructive" /></Button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
+
 
           {/* ===== EVENTS TAB ===== */}
           <TabsContent value="events">
