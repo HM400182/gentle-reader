@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -5,34 +6,27 @@ import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
 import logoImage from '@/assets/logo.png';
 import unityHands from '@/assets/unity-hands-hero.jpg';
+import { supabase } from '@/integrations/supabase/client';
+
+const ACCENT_COLORS = ['bg-community-warm', 'bg-community-trust', 'bg-community-nature'];
 
 const Index = () => {
+  const [dbPrograms, setDbPrograms] = useState<any[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from('programs')
+      .select('*')
+      .eq('is_published', true)
+      .order('display_order', { ascending: true })
+      .then(({ data }) => setDbPrograms(data || []));
+  }, []);
+
   const impactStats = [
     { number: "1500+", label: "Community Members Served", icon: Users },
     { number: "15", label: "Active Programs", icon: BookOpen },
     { number: "12", label: "Years of Impact", icon: Heart },
     { number: "50+", label: "Research Projects", icon: Lightbulb }
-  ];
-
-  const programs = [
-    {
-      title: "Mathare Resilience",
-      description: "Building community resilience through comprehensive support centers and vocational training.",
-      link: "/programs/mathare-resilience",
-      color: "bg-community-warm"
-    },
-    {
-      title: "Digital Associates",
-      description: "Data collection and analysis to enhance community operations and measure impact.",
-      link: "/programs/digital-associates", 
-      color: "bg-community-trust"
-    },
-    {
-      title: "Youth Leadership",
-      description: "Empowering young leaders to drive positive change in their communities.",
-      link: "/programs/youth-leadership",
-      color: "bg-community-nature"
-    }
   ];
 
   return (
@@ -149,18 +143,27 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {programs.map((program, index) => (
-              <Card key={index} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className={`h-2 ${program.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
+            {dbPrograms.length === 0 ? (
+              <p className="col-span-3 text-center text-muted-foreground py-8">Programs loading...</p>
+            ) : dbPrograms.map((program, index) => (
+              <Card key={program.id} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                {program.image_url && (
+                  <div className="h-40 overflow-hidden">
+                    <img src={program.image_url} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </div>
+                )}
+                <div className={`h-2 ${ACCENT_COLORS[index % ACCENT_COLORS.length]} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
                 <CardContent className="p-6">
                   <h4 className="text-gray-900 mb-3">{program.title}</h4>
                   <p className="text-gray-600 mb-6 leading-relaxed">{program.description}</p>
-                  <Link to={program.link}>
-                    <Button className="btn-outline w-full group-hover:bg-community-warm group-hover:text-white group-hover:border-community-warm">
-                      Learn More
-                      <ArrowRight className="ml-2 w-4 h-4" />  
-                    </Button>
-                  </Link>
+                  {program.slug && (
+                    <Link to={`/programs/${program.slug}`}>
+                      <Button className="btn-outline w-full group-hover:bg-community-warm group-hover:text-white group-hover:border-community-warm">
+                        Learn More
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             ))}
