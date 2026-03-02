@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { Calendar, Users, Newspaper, LogOut, Plus, Trash2, LayoutDashboard, Image, UserCheck, Handshake, DollarSign, Mail, Eye } from 'lucide-react';
+import { Calendar, Users, Newspaper, LogOut, Plus, Trash2, LayoutDashboard, Image, UserCheck, Handshake, DollarSign, Mail, Eye, BookOpen } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -27,6 +27,7 @@ const AdminDashboard = () => {
   const [sponsors, setSponsors] = useState<any[]>([]);
   const [donations, setDonations] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
+  const [programs, setPrograms] = useState<any[]>([]);
 
   // Form states
   const [eventForm, setEventForm] = useState({ title: '', description: '', location: '', event_date: '', event_time: '', is_published: true });
@@ -36,6 +37,7 @@ const AdminDashboard = () => {
   const [sponsorForm, setSponsorForm] = useState({ name: '', description: '', logo_url: '', website_url: '', tier: 'partner', is_published: true });
   
   const [donationForm, setDonationForm] = useState({ donor_name: '', email: '', amount: '', currency: 'KES', method: '', message: '' });
+  const [programForm, setProgramForm] = useState({ title: '', description: '', image_url: '', slug: '', display_order: 0, is_published: true });
 
   // Image upload state
   const [uploading, setUploading] = useState(false);
@@ -53,7 +55,7 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   const fetchAll = async () => {
-    const [v, e, n, g, t, s, d, c] = await Promise.all([
+    const [v, e, n, g, t, s, d, c, p] = await Promise.all([
       supabase.from('volunteers').select('*').order('created_at', { ascending: false }),
       supabase.from('events').select('*').order('event_date', { ascending: false }),
       supabase.from('news').select('*').order('created_at', { ascending: false }),
@@ -62,6 +64,7 @@ const AdminDashboard = () => {
       supabase.from('sponsors').select('*').order('display_order', { ascending: true }),
       supabase.from('donations').select('*').order('created_at', { ascending: false }),
       supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
+      supabase.from('programs').select('*').order('display_order', { ascending: true }),
     ]);
     setVolunteers(v.data || []);
     setEvents(e.data || []);
@@ -71,6 +74,7 @@ const AdminDashboard = () => {
     setSponsors(s.data || []);
     setDonations(d.data || []);
     setContacts(c.data || []);
+    setPrograms(p.data || []);
   };
 
   const handleLogout = async () => {
@@ -152,18 +156,70 @@ const AdminDashboard = () => {
           <Card><CardContent className="p-4 flex items-center gap-3"><Mail className="w-7 h-7 text-destructive" /><div><div className="text-2xl font-bold">{contacts.filter(c => !c.is_read).length}</div><div className="text-xs text-muted-foreground">Unread</div></div></CardContent></Card>
         </div>
 
-        <Tabs defaultValue="gallery">
+        <Tabs defaultValue="programs">
           <TabsList className="mb-4 flex-wrap h-auto gap-1">
+          <TabsTrigger value="programs"><BookOpen className="w-4 h-4 mr-1" />Programs</TabsTrigger>
             <TabsTrigger value="gallery"><Image className="w-4 h-4 mr-1" />Gallery</TabsTrigger>
             <TabsTrigger value="team"><UserCheck className="w-4 h-4 mr-1" />Team</TabsTrigger>
             <TabsTrigger value="sponsors"><Handshake className="w-4 h-4 mr-1" />Sponsors</TabsTrigger>
-            
             <TabsTrigger value="events"><Calendar className="w-4 h-4 mr-1" />Events</TabsTrigger>
             <TabsTrigger value="news"><Newspaper className="w-4 h-4 mr-1" />News</TabsTrigger>
             <TabsTrigger value="volunteers"><Users className="w-4 h-4 mr-1" />Volunteers</TabsTrigger>
             <TabsTrigger value="donations"><DollarSign className="w-4 h-4 mr-1" />Donations</TabsTrigger>
             <TabsTrigger value="contacts"><Mail className="w-4 h-4 mr-1" />Contacts</TabsTrigger>
           </TabsList>
+
+          {/* ===== PROGRAMS TAB ===== */}
+          <TabsContent value="programs">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader><CardTitle className="flex items-center gap-2"><Plus className="w-5 h-5" />Add Program</CardTitle></CardHeader>
+                <CardContent>
+                  <form onSubmit={e => {
+                    e.preventDefault();
+                    const slug = programForm.slug || programForm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    addItem('programs', { ...programForm, slug }, () => setProgramForm({ title: '', description: '', image_url: '', slug: '', display_order: 0, is_published: true }), ['title']);
+                  }} className="space-y-4">
+                    <div><Label>Title *</Label><Input value={programForm.title} onChange={e => setProgramForm(f => ({ ...f, title: e.target.value }))} required /></div>
+                    <div><Label>Description</Label><Textarea rows={4} value={programForm.description} onChange={e => setProgramForm(f => ({ ...f, description: e.target.value }))} /></div>
+                    <div>
+                      <Label>Image</Label>
+                      <Input type="file" accept="image/*" onChange={e => handleImageUpload(e, url => setProgramForm(f => ({ ...f, image_url: url })), 'programs')} />
+                      {programForm.image_url && <img src={programForm.image_url} alt="Preview" className="mt-2 h-24 object-cover rounded" />}
+                    </div>
+                    <div><Label>Slug (URL path, auto-generated if empty)</Label><Input value={programForm.slug} onChange={e => setProgramForm(f => ({ ...f, slug: e.target.value }))} placeholder="e.g. my-new-program" /></div>
+                    <div><Label>Display Order</Label><Input type="number" value={programForm.display_order} onChange={e => setProgramForm(f => ({ ...f, display_order: parseInt(e.target.value) || 0 }))} /></div>
+                    <div className="flex items-center gap-2"><Switch checked={programForm.is_published} onCheckedChange={v => setProgramForm(f => ({ ...f, is_published: v }))} /><Label>Published</Label></div>
+                    <Button type="submit" className="w-full btn-hero" disabled={uploading}>{uploading ? 'Uploading...' : 'Add Program'}</Button>
+                  </form>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader><CardTitle>Programs ({programs.length})</CardTitle></CardHeader>
+                <CardContent>
+                  {programs.length === 0 ? <p className="text-muted-foreground text-center py-8">No programs yet.</p> : (
+                    <div className="space-y-3 max-h-[600px] overflow-y-auto">
+                      {programs.map(prog => (
+                        <div key={prog.id} className="border rounded-lg p-3 flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-3 min-w-0">
+                            {prog.image_url && <img src={prog.image_url} alt={prog.title} className="w-12 h-12 object-cover rounded flex-shrink-0" />}
+                            <div className="min-w-0">
+                              <h4 className="font-medium text-sm truncate">{prog.title}</h4>
+                              <p className="text-xs text-muted-foreground truncate">/programs/{prog.slug}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            <Badge variant={prog.is_published ? "default" : "secondary"}>{prog.is_published ? 'Live' : 'Draft'}</Badge>
+                            <Button variant="ghost" size="sm" onClick={() => deleteItem('programs', prog.id)}><Trash2 className="w-4 h-4 text-destructive" /></Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
 
           {/* ===== GALLERY TAB ===== */}
           <TabsContent value="gallery">

@@ -22,6 +22,7 @@ import CivicEducation from "./pages/programs/CivicEducation";
 import GhettoStories from "./pages/programs/GhettoStories";
 import GhettoYouths from "./pages/programs/GhettoYouths";
 import UjiSato from "./pages/programs/UjiSato";
+import DynamicProgram from "./pages/programs/DynamicProgram";
 import Volunteer from "./pages/Volunteer";
 import Events from "./pages/Events";
 import AdminLogin from "./pages/AdminLogin";
@@ -59,6 +60,7 @@ const App = () => (
           <Route path="/programs/ghetto-stories" element={<GhettoStories />} />
           <Route path="/programs/ghetto-youths" element={<GhettoYouths />} />
           <Route path="/programs/uji-sato" element={<UjiSato />} />
+          <Route path="/programs/:slug" element={<DynamicProgram />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
