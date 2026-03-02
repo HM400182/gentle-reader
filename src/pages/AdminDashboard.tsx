@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   const [sponsorForm, setSponsorForm] = useState({ name: '', description: '', logo_url: '', website_url: '', tier: 'partner', is_published: true });
   
   const [donationForm, setDonationForm] = useState({ donor_name: '', email: '', amount: '', currency: 'KES', method: '', message: '' });
-  const [programForm, setProgramForm] = useState({ title: '', description: '', image_url: '', slug: '', display_order: 0, is_published: true });
+  const [programForm, setProgramForm] = useState({ title: '', description: '', image_url: '', is_published: true });
 
   // Image upload state
   const [uploading, setUploading] = useState(false);
@@ -177,20 +177,18 @@ const AdminDashboard = () => {
                 <CardContent>
                   <form onSubmit={e => {
                     e.preventDefault();
-                    const slug = programForm.slug || programForm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                    addItem('programs', { ...programForm, slug }, () => setProgramForm({ title: '', description: '', image_url: '', slug: '', display_order: 0, is_published: true }), ['title']);
+                    const slug = programForm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    addItem('programs', { ...programForm, slug }, () => setProgramForm({ title: '', description: '', image_url: '', is_published: true }), ['title']);
                   }} className="space-y-4">
-                    <div><Label>Title *</Label><Input value={programForm.title} onChange={e => setProgramForm(f => ({ ...f, title: e.target.value }))} required /></div>
-                    <div><Label>Description</Label><Textarea rows={4} value={programForm.description} onChange={e => setProgramForm(f => ({ ...f, description: e.target.value }))} /></div>
+                    <div><Label>Program Name *</Label><Input value={programForm.title} onChange={e => setProgramForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Youth Leadership" required /></div>
+                    <div><Label>Description</Label><Textarea rows={5} value={programForm.description} onChange={e => setProgramForm(f => ({ ...f, description: e.target.value }))} placeholder="Describe what this program does..." /></div>
                     <div>
-                      <Label>Image</Label>
+                      <Label>Cover Image (optional)</Label>
                       <Input type="file" accept="image/*" onChange={e => handleImageUpload(e, url => setProgramForm(f => ({ ...f, image_url: url })), 'programs')} />
-                      {programForm.image_url && <img src={programForm.image_url} alt="Preview" className="mt-2 h-24 object-cover rounded" />}
+                      {programForm.image_url && <img src={programForm.image_url} alt="Preview" className="mt-2 h-28 w-full object-cover rounded-lg" />}
                     </div>
-                    <div><Label>Slug (URL path, auto-generated if empty)</Label><Input value={programForm.slug} onChange={e => setProgramForm(f => ({ ...f, slug: e.target.value }))} placeholder="e.g. my-new-program" /></div>
-                    <div><Label>Display Order</Label><Input type="number" value={programForm.display_order} onChange={e => setProgramForm(f => ({ ...f, display_order: parseInt(e.target.value) || 0 }))} /></div>
-                    <div className="flex items-center gap-2"><Switch checked={programForm.is_published} onCheckedChange={v => setProgramForm(f => ({ ...f, is_published: v }))} /><Label>Published</Label></div>
-                    <Button type="submit" className="w-full btn-hero" disabled={uploading}>{uploading ? 'Uploading...' : 'Add Program'}</Button>
+                    <div className="flex items-center gap-3 p-3 bg-muted rounded-lg"><Switch checked={programForm.is_published} onCheckedChange={v => setProgramForm(f => ({ ...f, is_published: v }))} /><Label className="cursor-pointer">{programForm.is_published ? '✅ Visible on website' : '🔒 Hidden (draft)'}</Label></div>
+                    <Button type="submit" className="w-full btn-hero" disabled={uploading}>{uploading ? 'Uploading image...' : '🚀 Add Program'}</Button>
                   </form>
                 </CardContent>
               </Card>
