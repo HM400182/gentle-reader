@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
-import logoImage from '@/assets/logo.png';
 import unityHands from '@/assets/unity-hands-hero.jpg';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -63,11 +62,11 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="flex aspect-square rounded-3xl p-4 md:p-8 items-center justify-center">
+            <div className="hidden lg:flex aspect-square rounded-3xl overflow-hidden items-center justify-center">
               <img 
-                src={logoImage}
-                alt="Ghetto Foundation Logo" 
-                className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl animate-fade-in"
+                src={unityHands}
+                alt="Community in Mathare" 
+                className="w-full h-full object-cover rounded-3xl opacity-80 animate-fade-in"
               />
             </div>
 
