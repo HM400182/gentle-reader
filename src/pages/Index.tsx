@@ -1,25 +1,11 @@
-import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
 import unityHands from '@/assets/unity-hands-hero.jpg';
-import { supabase } from '@/integrations/supabase/client';
-
-const ACCENT_COLORS = ['bg-community-warm', 'bg-community-trust', 'bg-community-nature'];
 
 const Index = () => {
-  const [dbPrograms, setDbPrograms] = useState<any[]>([]);
-
-  useEffect(() => {
-    supabase
-      .from('programs')
-      .select('*')
-      .eq('is_published', true)
-      .order('display_order', { ascending: true })
-      .then(({ data }) => setDbPrograms(data || []));
-  }, []);
 
   const impactStats = [
     { number: "1500+", label: "Community Members Served", icon: Users },
@@ -142,27 +128,37 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {dbPrograms.length === 0 ? (
-              <p className="col-span-3 text-center text-muted-foreground py-8">Programs loading...</p>
-            ) : dbPrograms.map((program, index) => (
-              <Card key={program.id} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                {program.image_url && (
-                  <div className="h-40 overflow-hidden">
-                    <img src={program.image_url} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                  </div>
-                )}
-                <div className={`h-2 ${ACCENT_COLORS[index % ACCENT_COLORS.length]} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
+            {[
+              {
+                title: "Community Development",
+                description: "Building sustainable infrastructure and empowering residents through vocational training, housing support, and livelihood programs.",
+                slug: "community-projects",
+                accent: "bg-community-warm"
+              },
+              {
+                title: "Education & Research",
+                description: "Supporting academic excellence and conducting community-led research to drive evidence-based solutions and youth empowerment.",
+                slug: "youth-leadership",
+                accent: "bg-community-trust"
+              },
+              {
+                title: "Digital Innovation",
+                description: "Equipping youth with digital skills, entrepreneurship training, and technology access to unlock opportunities in the modern economy.",
+                slug: "digital-associates",
+                accent: "bg-community-nature"
+              }
+            ].map((program, index) => (
+              <Card key={index} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className={`h-2 ${program.accent} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
                 <CardContent className="p-6">
-                  <h4 className="text-gray-900 mb-3">{program.title}</h4>
-                  <p className="text-gray-600 mb-6 leading-relaxed">{program.description}</p>
-                  {program.slug && (
-                    <Link to={`/programs/${program.slug}`}>
-                      <Button className="btn-outline w-full group-hover:bg-community-warm group-hover:text-white group-hover:border-community-warm">
-                        Learn More
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </Link>
-                  )}
+                  <h4 className="text-foreground mb-3">{program.title}</h4>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{program.description}</p>
+                  <Link to={`/programs/${program.slug}`}>
+                    <Button className="btn-outline w-full group-hover:bg-community-warm group-hover:text-white group-hover:border-community-warm">
+                      Learn More
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
