@@ -51,13 +51,6 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="hidden lg:flex aspect-square rounded-3xl overflow-hidden items-center justify-center">
-              <img 
-                src={unityHands}
-                alt="Community in Mathare" 
-                className="w-full h-full object-cover rounded-3xl opacity-80 animate-fade-in"
-              />
-            </div>
 
           </div>
         </div>
