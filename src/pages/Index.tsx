@@ -4,6 +4,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
 import unityHands from '@/assets/unity-hands-hero.jpg';
+import mathareHero from '@/assets/programs/mathare-resilience-hero.jpg';
+import digitalHero from '@/assets/programs/digital-associates-hero.jpg';
+import youthHero from '@/assets/programs/youth-leadership-hero.jpg';
 
 const Index = () => {
 
@@ -48,13 +51,6 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="hidden lg:flex aspect-square rounded-3xl overflow-hidden items-center justify-center">
-              <img 
-                src={unityHands}
-                alt="Community in Mathare" 
-                className="w-full h-full object-cover rounded-3xl opacity-80 animate-fade-in"
-              />
-            </div>
 
           </div>
         </div>
@@ -130,29 +126,40 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Community Development",
-                description: "Building sustainable infrastructure and empowering residents through vocational training, housing support, and livelihood programs.",
-                slug: "community-projects",
-                accent: "bg-community-warm"
+                title: "Mathare Resilience",
+                description: "Building a comprehensive community center that empowers residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
+                slug: "mathare-resilience",
+                accent: "bg-community-warm",
+                image: mathareHero,
+                badge: "Community Development"
               },
               {
-                title: "Education & Research",
-                description: "Supporting academic excellence and conducting community-led research to drive evidence-based solutions and youth empowerment.",
+                title: "Youth Leadership",
+                description: "Empowering young leaders in Mathare to drive positive change through skills development, mentorship, hands-on leadership opportunities, and community advocacy training.",
                 slug: "youth-leadership",
-                accent: "bg-community-trust"
+                accent: "bg-community-trust",
+                image: youthHero,
+                badge: "Leadership Development"
               },
               {
-                title: "Digital Innovation",
-                description: "Equipping youth with digital skills, entrepreneurship training, and technology access to unlock opportunities in the modern economy.",
+                title: "Digital Associates",
+                description: "Collecting, measuring, and analyzing qualitative and quantitative data to enhance operations, improve online experiences, and quantify return on investment for the community.",
                 slug: "digital-associates",
-                accent: "bg-community-nature"
+                accent: "bg-community-nature",
+                image: digitalHero,
+                badge: "Data & Analytics"
               }
             ].map((program, index) => (
               <Card key={index} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className={`h-2 ${program.accent} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
+                <div className="h-44 overflow-hidden relative">
+                  <img src={program.image} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-black/30" />
+                  <span className="absolute top-3 left-3 text-xs font-medium text-white bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full">{program.badge}</span>
+                </div>
+                <div className={`h-1 ${program.accent}`}></div>
                 <CardContent className="p-6">
                   <h4 className="text-foreground mb-3">{program.title}</h4>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">{program.description}</p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed text-sm">{program.description}</p>
                   <Link to={`/programs/${program.slug}`}>
                     <Button className="btn-outline w-full group-hover:bg-community-warm group-hover:text-white group-hover:border-community-warm">
                       Learn More
