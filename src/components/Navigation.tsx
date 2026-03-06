@@ -2,15 +2,23 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png"; // ✅ Correct import path
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [aboutDropdown, setAboutDropdown] = useState(false);
   const [programsDropdown, setProgramsDropdown] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path: string) => location.pathname === path;
+
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+    setMobileAboutOpen(false);
+    setMobileProgramsOpen(false);
+  };
 
   const navLinks = {
     about: [
@@ -35,8 +43,8 @@ const Navigation = () => {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* ✅ Logo */}
-          <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2 flex-shrink-0" onClick={closeMobileMenu}>
             <img
               src={logo}
               alt="Ghetto Foundation Logo"
@@ -46,10 +54,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4 lg:space-x-8 ml-8 lg:ml-16">
-            <Link
-              to="/"
-              className={`nav-link ${isActive("/") ? "nav-link-active" : ""}`}
-            >
+            <Link to="/" className={`nav-link ${isActive("/") ? "nav-link-active" : ""}`}>
               Home
             </Link>
 
@@ -61,10 +66,10 @@ const Navigation = () => {
             >
               <button className="nav-link flex items-center space-x-1">
                 <span>About Us</span>
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${aboutDropdown ? "rotate-180" : ""}`} />
               </button>
               {aboutDropdown && (
-                <div className="absolute top-full left-0 mt-0 w-56 bg-white rounded-lg shadow-lg border z-50">
+                <div className="absolute top-full left-0 mt-0 w-56 bg-white rounded-lg shadow-lg border z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   {navLinks.about.map((link) => (
                     <Link
                       key={link.to}
@@ -88,10 +93,10 @@ const Navigation = () => {
             >
               <button className="nav-link flex items-center space-x-1">
                 <span>Programs</span>
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${programsDropdown ? "rotate-180" : ""}`} />
               </button>
               {programsDropdown && (
-                <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-lg shadow-lg border z-50">
+                <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-lg shadow-lg border z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   {navLinks.programs.map((link) => (
                     <Link
                       key={link.to}
@@ -107,40 +112,11 @@ const Navigation = () => {
               )}
             </div>
 
-            <Link
-              to="/gallery"
-              className={`nav-link ${isActive("/gallery") ? "nav-link-active" : ""}`}
-            >
-              Gallery
-            </Link>
-
-            <Link
-              to="/news"
-              className={`nav-link ${isActive("/news") ? "nav-link-active" : ""}`}
-            >
-              News
-            </Link>
-
-            <Link
-              to="/volunteer"
-              className={`nav-link ${isActive("/volunteer") ? "nav-link-active" : ""}`}
-            >
-              Volunteer
-            </Link>
-
-            <Link
-              to="/events"
-              className={`nav-link ${isActive("/events") ? "nav-link-active" : ""}`}
-            >
-              Events
-            </Link>
-
-            <Link
-              to="/contact"
-              className={`nav-link ${isActive("/contact") ? "nav-link-active" : ""}`}
-            >
-              Contact
-            </Link>
+            <Link to="/gallery" className={`nav-link ${isActive("/gallery") ? "nav-link-active" : ""}`}>Gallery</Link>
+            <Link to="/news" className={`nav-link ${isActive("/news") ? "nav-link-active" : ""}`}>News</Link>
+            <Link to="/volunteer" className={`nav-link ${isActive("/volunteer") ? "nav-link-active" : ""}`}>Volunteer</Link>
+            <Link to="/events" className={`nav-link ${isActive("/events") ? "nav-link-active" : ""}`}>Events</Link>
+            <Link to="/contact" className={`nav-link ${isActive("/contact") ? "nav-link-active" : ""}`}>Contact</Link>
 
             <Link to="/donate">
               <Button className="btn-hero">Support Us</Button>
@@ -150,34 +126,56 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-community-warm"
+            className="md:hidden p-2 rounded-md text-gray-600 hover:text-community-warm transition-colors duration-200"
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <div className="transition-all duration-300">
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t">
-            <div className="space-y-2">
-              <Link
-                to="/"
-                className={`block py-2 nav-link ${
-                  isActive("/") ? "nav-link-active" : ""
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="py-4 border-t space-y-1">
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2.5 rounded-lg nav-link transition-colors duration-150 ${
+                isActive("/") ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* Mobile About Dropdown */}
+            <div>
+              <button
+                onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg nav-link hover:bg-gray-50 transition-colors duration-150"
+              >
+                <span className="font-medium">About Us</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-300 ${mobileAboutOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  mobileAboutOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                Home
-              </Link>
-
-              <div className="py-2">
-                <div className="font-medium text-gray-900 mb-2">About Us</div>
-                <div className="pl-4 space-y-2">
+                <div className="pl-4 py-1 space-y-1">
                   {navLinks.about.map((link) => (
                     <Link
                       key={link.to}
                       to={link.to}
-                      className={`block py-1 nav-link ${
-                        isActive(link.to) ? "nav-link-active" : ""
+                      onClick={closeMobileMenu}
+                      className={`block px-3 py-2 rounded-lg nav-link text-sm transition-colors duration-150 ${
+                        isActive(link.to) ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
                       }`}
                     >
                       {link.label}
@@ -185,16 +183,32 @@ const Navigation = () => {
                   ))}
                 </div>
               </div>
+            </div>
 
-              <div className="py-2">
-                <div className="font-medium text-gray-900 mb-2">Programs</div>
-                <div className="pl-4 space-y-2">
+            {/* Mobile Programs Dropdown */}
+            <div>
+              <button
+                onClick={() => setMobileProgramsOpen(!mobileProgramsOpen)}
+                className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg nav-link hover:bg-gray-50 transition-colors duration-150"
+              >
+                <span className="font-medium">Programs</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-300 ${mobileProgramsOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  mobileProgramsOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="pl-4 py-1 space-y-1">
                   {navLinks.programs.map((link) => (
                     <Link
                       key={link.to}
                       to={link.to}
-                      className={`block py-1 nav-link ${
-                        isActive(link.to) ? "nav-link-active" : ""
+                      onClick={closeMobileMenu}
+                      className={`block px-3 py-2 rounded-lg nav-link text-sm transition-colors duration-150 ${
+                        isActive(link.to) ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
                       }`}
                     >
                       {link.label}
@@ -202,58 +216,34 @@ const Navigation = () => {
                   ))}
                 </div>
               </div>
+            </div>
 
+            {[
+              { to: "/gallery", label: "Gallery" },
+              { to: "/news", label: "News" },
+              { to: "/volunteer", label: "Volunteer" },
+              { to: "/events", label: "Events" },
+              { to: "/contact", label: "Contact" },
+            ].map((link) => (
               <Link
-                to="/gallery"
-                className={`block py-2 nav-link ${
-                  isActive("/gallery") ? "nav-link-active" : ""
+                key={link.to}
+                to={link.to}
+                onClick={closeMobileMenu}
+                className={`block px-3 py-2.5 rounded-lg nav-link transition-colors duration-150 ${
+                  isActive(link.to) ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
                 }`}
               >
-                Gallery
+                {link.label}
               </Link>
+            ))}
 
-              <Link
-                to="/news"
-                className={`block py-2 nav-link ${
-                  isActive("/news") ? "nav-link-active" : ""
-                }`}
-              >
-                News
-              </Link>
-
-              <Link
-                to="/volunteer"
-                className={`block py-2 nav-link ${
-                  isActive("/volunteer") ? "nav-link-active" : ""
-                }`}
-              >
-                Volunteer
-              </Link>
-
-              <Link
-                to="/events"
-                className={`block py-2 nav-link ${
-                  isActive("/events") ? "nav-link-active" : ""
-                }`}
-              >
-                Events
-              </Link>
-
-              <Link
-                to="/contact"
-                className={`block py-2 nav-link ${
-                  isActive("/contact") ? "nav-link-active" : ""
-                }`}
-              >
-                Contact
-              </Link>
-
-              <Link to="/donate">
-                <Button className="btn-hero w-full mt-4">Support Us</Button>
+            <div className="pt-2 pb-1">
+              <Link to="/donate" onClick={closeMobileMenu}>
+                <Button className="btn-hero w-full">Support Us</Button>
               </Link>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
