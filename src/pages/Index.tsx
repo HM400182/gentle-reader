@@ -127,7 +127,7 @@ const Index = () => {
             {[
               {
                 title: "Mathare Resilience",
-                description: "Building a comprehensive community center that empowers residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
+                description: "Building a comprehensive community center empowering residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
                 slug: "mathare-resilience",
                 accent: "bg-community-warm",
                 image: mathareHero,
