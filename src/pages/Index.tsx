@@ -4,6 +4,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
 import unityHands from '@/assets/unity-hands-hero.jpg';
+import mathareHero from '@/assets/programs/mathare-resilience-hero.jpg';
+import digitalHero from '@/assets/programs/digital-associates-hero.jpg';
+import youthHero from '@/assets/programs/youth-leadership-hero.jpg';
 
 const Index = () => {
 
