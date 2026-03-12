@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { BarChart3, Users, TrendingUp, Target, Database, LineChart } from 'lucide-react';
 import heroImage from '@/assets/programs/digital-associates-hero.jpg';
+import hillaryImg from '@/assets/Gemini_Generated_Image_tb938vtb938vtb93.png';
 
 const DigitalAssociates = () => {
   const services = [
@@ -166,7 +167,7 @@ const DigitalAssociates = () => {
                 <CardContent className="p-6">
                   <div className="relative mb-6">
                     <img
-                      src="/src/assets/Gemini_Generated_Image_tb938vtb938vtb93.png"
+                      src={hillaryImg}
                       alt="Hillary Mukaka"
                       className="w-24 h-24 rounded-full mx-auto object-cover"
                     />

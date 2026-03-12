@@ -50,9 +50,8 @@ const VisitUs = () => {
 
           {/* Map Container */}
           <div 
-            className="relative w-full overflow-hidden rounded-xl bg-card"
+            className="relative w-full overflow-hidden rounded-xl bg-card h-[300px] sm:h-[450px]"
             style={{ 
-              aspectRatio: '16 / 9',
               boxShadow: '0 8px 30px -12px hsl(var(--foreground) / 0.15), 0 4px 10px -6px hsl(var(--foreground) / 0.1)'
             }}
           >
@@ -65,7 +64,7 @@ const VisitUs = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
-              className="absolute inset-0 h-[300px] sm:h-[450px] w-full rounded-xl"
+              className="absolute inset-0 w-full h-full rounded-xl"
             />
           </div>
 
