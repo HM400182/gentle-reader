@@ -167,7 +167,7 @@ const DigitalAssociates = () => {
                 <CardContent className="p-6">
                   <div className="relative mb-6">
                     <img
-                      src="/src/assets/Gemini_Generated_Image_tb938vtb938vtb93.png"
+                      src={hillaryImg}
                       alt="Hillary Mukaka"
                       className="w-24 h-24 rounded-full mx-auto object-cover"
                     />
