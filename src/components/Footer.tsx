@@ -102,7 +102,7 @@ const Footer = () => {
                   className="flex items-center gap-3 text-gray-300 transition hover:text-community-warm"
                 >
                   <Phone className="h-5 w-5 text-community-warm" />
-                  +254 XXX XXX XXX
+                  +254 720 847 102
                 </a>
 
                 <a
@@ -128,7 +128,7 @@ const Footer = () => {
           {/* Bottom */}
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400 text-sm">
-              © 2025 Ghetto Foundation. All rights reserved. Built with ❤️ for the
+              © 2026 Ghetto Foundation. All rights reserved. Built with ❤️ for the
               community.
             </p>
           </div>

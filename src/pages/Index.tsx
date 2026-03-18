@@ -130,8 +130,8 @@ const Index = () => {
                 description: "Building a comprehensive community center empowering residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
                 slug: "mathare-resilience",
                 accent: "bg-community-warm",
-                image: mathareHero,
-                badge: "Community Development"
+                image: "/src/assets/IMG_1160.JPG",
+                badge: ""
               },
               {
                 title: "Youth Leadership",
@@ -139,7 +139,7 @@ const Index = () => {
                 slug: "youth-leadership",
                 accent: "bg-community-trust",
                 image: youthHero,
-                badge: "Leadership Development"
+                badge: ""
               },
               {
                 title: "Digital Associates",
@@ -147,7 +147,7 @@ const Index = () => {
                 slug: "digital-associates",
                 accent: "bg-community-nature",
                 image: digitalHero,
-                badge: "Data & Analytics"
+                badge: ""
               }
             ].map((program, index) => (
               <Card key={index} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
