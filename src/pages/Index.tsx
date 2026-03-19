@@ -130,7 +130,7 @@ const Index = () => {
                 description: "Building a comprehensive community center empowering residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
                 slug: "mathare-resilience",
                 accent: "bg-community-warm",
-                image: "/src/assets/IMG_1160.JPG",
+                image: "/public/images/IMG_1160.JPG",
                 badge: ""
               },
               {
