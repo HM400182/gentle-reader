@@ -125,21 +125,20 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-                {
-    title: "Mathare Resilience",
-    description: "Building a comprehensive community center empowering residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
-    slug: "mathare-resilience",
-    accent: "bg-community-warm",
-    image: "/images/IMG_1160.JPG", 
-    badge: ""
-  },
+              {
+                title: "Mathare Resilience",
+                description: "Building a comprehensive community center empowering residents through education, skills training, vocational programs, a community library, and social justice advocacy.",
+                slug: "mathare-resilience",
+                accent: "bg-community-warm",
+                image: mathareHero,
+                badge: ""
+              },
               {
                 title: "Youth Leadership",
                 description: "Empowering young leaders in Mathare to drive positive change through skills development, mentorship, hands-on leadership opportunities, and community advocacy training.",
                 slug: "youth-leadership",
                 accent: "bg-community-trust",
                 image: youthHero,
-                badge: ""
               },
               {
                 title: "Digital Associates",
@@ -147,7 +146,6 @@ const Index = () => {
                 slug: "digital-associates",
                 accent: "bg-community-nature",
                 image: digitalHero,
-                badge: ""
               }
             ].map((program, index) => (
               <Card key={index} className="community-card overflow-hidden group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>

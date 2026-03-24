@@ -110,7 +110,7 @@ const Footer = () => {
                   className="flex items-center gap-3 text-gray-300 transition hover:text-community-warm"
                 >
                   <Mail className="h-5 w-5 text-community-warm" />
-                  info@ghettofoundation.org
+                  management@ghettofoundationkenya.org
                 </a>
               </div>
 
