@@ -32,7 +32,7 @@ const Footer = () => {
                   { icon: Facebook, link: "https://facebook.com" },
                   { icon: Twitter, link: "https://twitter.com" },
                   { icon: Instagram, link: "https://instagram.com" },
-                  { icon: Youtube, link: "https://youtube.com" },
+                  { icon: Youtube, link: "https://www.youtube.com/@GhettoFoundation" },
                 ].map(({ icon: Icon, link }, i) => (
                   <a
                     key={i}
