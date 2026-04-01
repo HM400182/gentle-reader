@@ -2,31 +2,14 @@ import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
+import { Heart, Users, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
 import unityHands from '@/assets/unity-hands-hero.jpg';
 import mathareHero from '@/assets/programs/mathare-resilience-hero.jpg';
 import digitalHero from '@/assets/programs/digital-associates-hero.jpg';
 import youthHero from '@/assets/programs/youth-leadership-hero.jpg';
-import communityServed from '@/assets/programs/community-education.jpg';
-import yearsImpact from '@/assets/mathare-aerial.jpg';
-import researchImg from '@/assets/programs/research-hero.jpg';
-import collage1 from '@/assets/programs/mathare-resilience-hero.jpg';
-import collage2 from '@/assets/programs/youth-leadership-hero.jpg';
-import collage3 from '@/assets/programs/digital-associates-hero.jpg';
-import collage4 from '@/assets/programs/ghetto-stories-hero.jpg';
-import collage5 from '@/assets/programs/civic-education-hero.jpg';
+import ImpactStats from '@/components/ImpactStats';
 
 const Index = () => {
-
-  const impactStats = [
-    { number: "1500+", label: "Community Members Served", icon: Users, bgImage: communityServed },
-    { number: "15", label: "Active Programs", icon: BookOpen, bgImage: null },
-    { number: "12", label: "Years of Impact", icon: Heart, bgImage: yearsImpact },
-    { number: "50+", label: "Research Projects", icon: Lightbulb, bgImage: researchImg }
-  ];
-
-  const collageImages = [collage1, collage2, collage3, collage4, collage5];
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -66,55 +49,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Impact Stats */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {impactStats.map((stat, index) => (
-              <div
-                key={index}
-                className="relative rounded-xl overflow-hidden shadow-lg animate-scale-in min-h-[180px] sm:min-h-[220px] flex items-center justify-center"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Background: collage for Active Programs, single image for others */}
-                {stat.bgImage ? (
-                  <img
-                    src={stat.bgImage}
-                    alt={stat.label}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
-                    {collageImages.map((img, i) => (
-                      <img
-                        key={i}
-                        src={img}
-                        alt={`Program ${i + 1}`}
-                        className={`w-full h-full object-cover ${
-                          i === 0 ? 'col-span-2 row-span-1' :
-                          i === 1 ? 'col-span-1 row-span-1' :
-                          i === 2 ? 'col-span-1 row-span-1' :
-                          i === 3 ? 'col-span-1 row-span-1' :
-                          'col-span-1 row-span-1'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                )}
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black/60" />
-                {/* Content */}
-                <div className="relative z-10 text-center p-4 sm:p-6">
-                  <stat.icon className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-3 text-white drop-shadow-md" />
-                  <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2 drop-shadow-md">{stat.number}</div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium drop-shadow-sm">{stat.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <ImpactStats />
       {/* Mission Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
