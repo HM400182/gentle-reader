@@ -7,15 +7,25 @@ import unityHands from '@/assets/unity-hands-hero.jpg';
 import mathareHero from '@/assets/programs/mathare-resilience-hero.jpg';
 import digitalHero from '@/assets/programs/digital-associates-hero.jpg';
 import youthHero from '@/assets/programs/youth-leadership-hero.jpg';
+import communityServed from '@/assets/programs/community-education.jpg';
+import yearsImpact from '@/assets/mathare-aerial.jpg';
+import researchImg from '@/assets/programs/research-hero.jpg';
+import collage1 from '@/assets/programs/mathare-resilience-hero.jpg';
+import collage2 from '@/assets/programs/youth-leadership-hero.jpg';
+import collage3 from '@/assets/programs/digital-associates-hero.jpg';
+import collage4 from '@/assets/programs/ghetto-stories-hero.jpg';
+import collage5 from '@/assets/programs/civic-education-hero.jpg';
 
 const Index = () => {
 
   const impactStats = [
-    { number: "1500+", label: "Community Members Served", icon: Users },
-    { number: "15", label: "Active Programs", icon: BookOpen },
-    { number: "12", label: "Years of Impact", icon: Heart },
-    { number: "50+", label: "Research Projects", icon: Lightbulb }
+    { number: "1500+", label: "Community Members Served", icon: Users, bgImage: communityServed },
+    { number: "15", label: "Active Programs", icon: BookOpen, bgImage: null },
+    { number: "12", label: "Years of Impact", icon: Heart, bgImage: yearsImpact },
+    { number: "50+", label: "Research Projects", icon: Lightbulb, bgImage: researchImg }
   ];
+
+  const collageImages = [collage1, collage2, collage3, collage4, collage5];
 
   return (
     <Layout>
