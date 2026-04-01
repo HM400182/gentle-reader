@@ -67,17 +67,49 @@ const Index = () => {
       </section>
 
       {/* Impact Stats */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {impactStats.map((stat, index) => (
-              <Card key={index} className="impact-card text-center animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-6">
-                  <stat.icon className="w-8 h-8 mx-auto mb-4 text-white" />
-                  <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                  <div className="text-white/90 text-sm font-medium">{stat.label}</div>
-                </CardContent>
-              </Card>
+              <div
+                key={index}
+                className="relative rounded-xl overflow-hidden shadow-lg animate-scale-in min-h-[180px] sm:min-h-[220px] flex items-center justify-center"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Background: collage for Active Programs, single image for others */}
+                {stat.bgImage ? (
+                  <img
+                    src={stat.bgImage}
+                    alt={stat.label}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
+                    {collageImages.map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`Program ${i + 1}`}
+                        className={`w-full h-full object-cover ${
+                          i === 0 ? 'col-span-2 row-span-1' :
+                          i === 1 ? 'col-span-1 row-span-1' :
+                          i === 2 ? 'col-span-1 row-span-1' :
+                          i === 3 ? 'col-span-1 row-span-1' :
+                          'col-span-1 row-span-1'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/60" />
+                {/* Content */}
+                <div className="relative z-10 text-center p-4 sm:p-6">
+                  <stat.icon className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-3 text-white drop-shadow-md" />
+                  <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2 drop-shadow-md">{stat.number}</div>
+                  <div className="text-white/90 text-xs sm:text-sm font-medium drop-shadow-sm">{stat.label}</div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
