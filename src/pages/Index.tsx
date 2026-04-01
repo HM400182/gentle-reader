@@ -10,16 +10,6 @@ import youthHero from '@/assets/programs/youth-leadership-hero.jpg';
 import ImpactStats from '@/components/ImpactStats';
 
 const Index = () => {
-
-  const impactStats = [
-    { number: "1500+", label: "Community Members Served", icon: Users, bgImage: communityServed },
-    { number: "15", label: "Active Programs", icon: BookOpen, bgImage: null },
-    { number: "12", label: "Years of Impact", icon: Heart, bgImage: yearsImpact },
-    { number: "50+", label: "Research Projects", icon: Lightbulb, bgImage: researchImg }
-  ];
-
-  const collageImages = [collage1, collage2, collage3, collage4, collage5];
-
   return (
     <Layout>
       {/* Hero Section */}
