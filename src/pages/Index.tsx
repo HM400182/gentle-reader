@@ -7,14 +7,15 @@ import unityHands from '@/assets/unity-hands-hero.jpg';
 import mathareHero from '@/assets/programs/mathare-resilience-hero.jpg';
 import digitalHero from '@/assets/programs/digital-associates-hero.jpg';
 import youthHero from '@/assets/programs/youth-leadership-hero.jpg';
-import communityServed from '@/assets/programs/community-education.jpg';
-import yearsImpact from '@/assets/mathare-aerial.jpg';
-import researchImg from '@/assets/programs/research-hero.jpg';
-import collage1 from '@/assets/programs/mathare-resilience-hero.jpg';
-import collage2 from '@/assets/programs/youth-leadership-hero.jpg';
-import collage3 from '@/assets/programs/digital-associates-hero.jpg';
-import collage4 from '@/assets/programs/ghetto-stories-hero.jpg';
-import collage5 from '@/assets/programs/civic-education-hero.jpg';
+import communityServed from '@/assets/impact/mathare-aerial.jpg';
+import yearsImpact from '@/assets/impact/mathare-aerial.jpg';
+import researchImg from '@/assets/impact/youth-discussion.jpg';
+import collage1 from '@/assets/impact/bottle-art.jpg';
+import collage2 from '@/assets/impact/children-cups.jpg';
+import collage3 from '@/assets/impact/presenter-black.jpg';
+import collage4 from '@/assets/impact/presenter-yellow.jpg';
+import collage5 from '@/assets/impact/community-circle.jpg';
+import collage6 from '@/assets/impact/women-phone.jpg';
 
 const Index = () => {
 
