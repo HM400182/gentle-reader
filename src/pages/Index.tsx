@@ -91,13 +91,7 @@ const Index = () => {
                         key={i}
                         src={img}
                         alt={`Program ${i + 1}`}
-                        className={`w-full h-full object-cover ${
-                          i === 0 ? 'col-span-2 row-span-1' :
-                          i === 1 ? 'col-span-1 row-span-1' :
-                          i === 2 ? 'col-span-1 row-span-1' :
-                          i === 3 ? 'col-span-1 row-span-1' :
-                          'col-span-1 row-span-1'
-                        }`}
+                        className="w-full h-full object-cover"
                       />
                     ))}
                   </div>
