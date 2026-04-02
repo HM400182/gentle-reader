@@ -26,7 +26,7 @@ const Index = () => {
     { number: "50+", label: "Research Projects", icon: Lightbulb, bgImage: researchImg }
   ];
 
-  const collageImages = [collage1, collage2, collage3, collage4, collage5];
+  const collageImages = [collage1, collage2, collage3, collage4, collage5, collage6];
 
   return (
     <Layout>
