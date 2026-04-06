@@ -5,41 +5,49 @@ import { Link } from 'react-router-dom';
 import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } from 'lucide-react';
 import CountUp from 'react-countup';
 
-// Collage images (replace with local images if needed)
+import mathareAerial from '@/assets/impact/mathare-aerial.jpg';
+import youthDiscussion from '@/assets/impact/youth-discussion.jpg';
+import bottleArt from '@/assets/impact/bottle-art.jpg';
+import childrenCups from '@/assets/impact/children-cups.jpg';
+import presenterBlack from '@/assets/impact/presenter-black.jpg';
+import presenterYellow from '@/assets/impact/presenter-yellow.jpg';
+import communityCircle from '@/assets/impact/community-circle.jpg';
+import womenPhone from '@/assets/impact/women-phone.jpg';
+
 const collageImages = [
-  "/images/program1.jpg",
-  "/images/program2.jpg",
-  "/images/program3.jpg",
-  "/images/program4.jpg",
-  "/images/program5.jpg"
+  bottleArt,
+  childrenCups,
+  presenterBlack,
+  presenterYellow,
+  communityCircle,
+  womenPhone,
 ];
 
-// Impact stats
 const impactStats = [
   {
     number: 1500,
     label: "Community Members Served",
     icon: Users,
-    image: "/images/impact1.jpg"
+    image: mathareAerial,
   },
   {
     number: 4,
     label: "Active Programs",
     icon: BookOpen,
-    collage: collageImages
+    collage: collageImages,
   },
   {
     number: 12,
     label: "Years of Impact",
     icon: Heart,
-    image: "/images/impact2.jpg"
+    image: mathareAerial,
   },
   {
     number: 50,
     label: "Research Projects",
     icon: Lightbulb,
-    image: "/images/impact3.jpg"
-  }
+    image: youthDiscussion,
+  },
 ];
 
 const Index = () => {
@@ -95,11 +103,14 @@ const Index = () => {
 
                 {/* Collage background */}
                 {stat.collage && (
-                  <div className="collage-grid absolute inset-0 z-0">
+                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 z-0">
                     {stat.collage.map((img, idx) => (
-                      <div key={idx} className={idx === 0 ? "col-span-2 row-span-2" : ""}>
-                        <img src={img} alt={`collage-${idx}`} />
-                      </div>
+                      <img
+                        key={idx}
+                        src={img}
+                        alt={`collage-${idx}`}
+                        className="w-full h-full object-cover"
+                      />
                     ))}
                   </div>
                 )}

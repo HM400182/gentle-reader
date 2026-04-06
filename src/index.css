@@ -195,29 +195,29 @@ html {
 }
 
 /* 🔥 COLLAGE GRID BACKGROUNDS */
-.collage-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 150px);
-  gap: 4px;
-}
-
-.collage-grid > div {
-  overflow: hidden;
+/* Nav link hover styles */
+.nav-link {
   position: relative;
-  cursor: pointer;
-  transition: transform 0.5s ease;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  transition: all 0.2s ease;
 }
 
-.collage-grid > div:hover img {
-  transform: scale(1.05);
+.nav-link:hover {
+  background-color: hsl(var(--community-warm));
+  color: white;
 }
 
-.collage-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+.nav-link-active {
+  color: hsl(var(--community-warm));
+  font-weight: 600;
+}
+
+.nav-link-active:hover {
+  background-color: hsl(var(--community-warm));
+  color: white;
 }
 
 /* 🔥 SEMI-TRANSPARENT OVERLAY FOR CARDS */
