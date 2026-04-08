@@ -205,8 +205,8 @@ html {
 }
 
 .nav-link:hover {
-  background-color: hsl(var(--community-warm) / 0.1);
-  color: hsl(var(--community-warm));
+  background-color: hsl(var(--community-warm) / 0.1) !important;
+  color: hsl(var(--community-warm)) !important;
 }
 
 .nav-link-active {
