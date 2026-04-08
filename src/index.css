@@ -212,6 +212,8 @@ html {
 .nav-link-active {
   color: hsl(var(--community-warm));
   font-weight: 600;
+  border-bottom: 2px solid hsl(var(--community-warm));
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .nav-link-active:hover {
