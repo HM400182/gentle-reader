@@ -231,9 +231,11 @@ html {
 .countup-number {
   font-weight: 700;
   font-size: 2rem;
+  color: white;
 }
 
 .countup-label {
   font-size: 0.875rem;
   font-weight: 500;
+  color: white;
 }
