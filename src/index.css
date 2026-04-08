@@ -201,12 +201,12 @@ html {
   border-radius: 0.5rem;
   font-weight: 500;
   color: hsl(var(--foreground));
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .nav-link:hover {
-  background-color: hsl(var(--community-warm));
-  color: white;
+  background-color: hsl(var(--community-warm) / 0.1);
+  color: hsl(var(--community-warm));
 }
 
 .nav-link-active {
@@ -215,8 +215,8 @@ html {
 }
 
 .nav-link-active:hover {
-  background-color: hsl(var(--community-warm));
-  color: white;
+  background-color: hsl(var(--community-warm) / 0.15);
+  color: hsl(var(--community-warm));
 }
 
 /* 🔥 SEMI-TRANSPARENT OVERLAY FOR CARDS */
