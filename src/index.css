@@ -201,7 +201,7 @@ html {
   border-radius: 0.5rem;
   font-weight: 500;
   color: hsl(var(--foreground));
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-link:hover {
@@ -209,9 +209,16 @@ html {
   color: hsl(var(--community-warm)) !important;
 }
 
+.nav-link:focus-visible {
+  outline: none;
+  color: hsl(var(--community-warm));
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--community-warm));
+}
+
 .nav-link-active {
   color: hsl(var(--community-warm));
   font-weight: 600;
+  background-color: hsl(var(--community-warm) / 0.08);
   border-bottom: 2px solid hsl(var(--community-warm));
   border-radius: 0.5rem 0.5rem 0 0;
 }
@@ -219,6 +226,21 @@ html {
 .nav-link-active:hover {
   background-color: hsl(var(--community-warm) / 0.15);
   color: hsl(var(--community-warm));
+}
+
+/* 🔥 REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* 🔥 SEMI-TRANSPARENT OVERLAY FOR CARDS */
