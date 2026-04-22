@@ -44,7 +44,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@supabase/supabase-js": "^2.95.3",
     "@tanstack/react-query": "^5.83.0",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "@vitejs/plugin-react-oxc": "^0.4.3",
     "baseline-browser-mapping": "^2.9.14",
     "caniuse-lite": "^1.0.30001764",
