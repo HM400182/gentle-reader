@@ -189,7 +189,7 @@ const Navigation = () => {
             <div>
               <button
                 onClick={() => setMobileProgramsOpen(!mobileProgramsOpen)}
-                className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg nav-link hover:bg-gray-50 transition-colors duration-150"
+                className="w-full flex items-center justify-between px-3 py-2.5 nav-link"
               >
                 <span className="font-medium">Programs</span>
                 <ChevronDown
@@ -207,8 +207,8 @@ const Navigation = () => {
                       key={link.to}
                       to={link.to}
                       onClick={closeMobileMenu}
-                      className={`block px-3 py-2 rounded-lg nav-link text-sm transition-colors duration-150 ${
-                        isActive(link.to) ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
+                      className={`block px-3 py-2 nav-link text-sm ${
+                        isActive(link.to) ? "nav-link-active" : ""
                       }`}
                     >
                       {link.label}
@@ -229,8 +229,8 @@ const Navigation = () => {
                 key={link.to}
                 to={link.to}
                 onClick={closeMobileMenu}
-                className={`block px-3 py-2.5 rounded-lg nav-link transition-colors duration-150 ${
-                  isActive(link.to) ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
+                className={`block px-3 py-2.5 nav-link ${
+                  isActive(link.to) ? "nav-link-active" : ""
                 }`}
               >
                 {link.label}
