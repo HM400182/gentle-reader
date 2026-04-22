@@ -145,8 +145,8 @@ const Navigation = () => {
             <Link
               to="/"
               onClick={closeMobileMenu}
-              className={`block px-3 py-2.5 rounded-lg nav-link transition-colors duration-150 ${
-                isActive("/") ? "nav-link-active bg-gray-50" : "hover:bg-gray-50"
+              className={`block px-3 py-2.5 nav-link ${
+                isActive("/") ? "nav-link-active" : ""
               }`}
             >
               Home
