@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Users, Book, Shield, Scale, Coffee } from 'lucide-react';
 import heroImage from '@/assets/programs/mathare-resilience-hero.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const MathareResilience = () => {
   const features = [
@@ -123,15 +124,15 @@ const MathareResilience = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">500+</div>
+                <StatNumber value="500+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Members Served</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                <StatNumber value="50+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Skills Training Programs</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
+                <StatNumber value="100%" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community-Led Approach</p>
               </div>
             </div>

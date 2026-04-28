@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Vote, Scale, BookOpen, Users, Megaphone, Award } from 'lucide-react';
 import heroImage from '@/assets/programs/civic-education-hero.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const CivicEducation = () => {
   const topics = [
@@ -244,19 +245,19 @@ const CivicEducation = () => {
             <h2 className="text-3xl font-bold mb-6">Program Impact</h2>
             <div className="grid md:grid-cols-4 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">500+</div>
+                <StatNumber value="500+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Members Trained</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">45</div>
+                <StatNumber value="45" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Education Sessions Held</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">75%</div>
+                <StatNumber value="75%" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Increased Civic Participation</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">2</div>
+                <StatNumber value="2" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Years Program Running</p>
               </div>
             </div>
