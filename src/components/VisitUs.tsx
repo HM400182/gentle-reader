@@ -2,25 +2,48 @@ import { useEffect, useRef, useState } from "react";
 import { ExternalLink, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const MAP_SRC =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.85414349635!2d36.85525077573673!3d-1.2655513987224203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1777b5edd317%3A0xad01ec1768ca566e!2sGhetto%20Foundation!5e0!3m2!1sen!2ske!4v1715682000000!5m2!1sen!2ske";
+
 const VisitUs = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [mapVisible, setMapVisible] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          // Defer iframe mount slightly so it doesn't block initial paint
+          // when section is already in view on load.
+          requestAnimationFrame(() => setMapVisible(true));
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "200px" }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
   }, []);
+
+  // Preconnect to Google Maps origins as soon as section is near viewport
+  useEffect(() => {
+    if (!mapVisible) return;
+    const origins = ["https://www.google.com", "https://maps.gstatic.com", "https://maps.googleapis.com"];
+    const links: HTMLLinkElement[] = origins.map((href) => {
+      const link = document.createElement("link");
+      link.rel = "preconnect";
+      link.href = href;
+      link.crossOrigin = "anonymous";
+      document.head.appendChild(link);
+      return link;
+    });
+    return () => links.forEach((l) => l.remove());
+  }, [mapVisible]);
 
   return (
     <section
@@ -55,17 +78,29 @@ const VisitUs = () => {
               boxShadow: '0 8px 30px -12px hsl(var(--foreground) / 0.15), 0 4px 10px -6px hsl(var(--foreground) / 0.1)'
             }}
           >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.85414349635!2d36.85525077573673!3d-1.2655513987224203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1777b5edd317%3A0xad01ec1768ca566e!2sGhetto%20Foundation!5e0!3m2!1sen!2ske!4v1715682000000!5m2!1sen!2ske"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
-              className="absolute inset-0 w-full h-full rounded-xl"
-            />
+            {/* Lightweight placeholder shown until map iframe is loaded */}
+            {!mapLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-8 w-8 animate-pulse text-community-warm" />
+                  <span className="text-sm">Loading map…</span>
+                </div>
+              </div>
+            )}
+            {mapVisible && (
+              <iframe
+                src={MAP_SRC}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
+                className={`absolute inset-0 w-full h-full rounded-xl transition-opacity duration-500 ${mapLoaded ? "opacity-100" : "opacity-0"}`}
+                onLoad={() => setMapLoaded(true)}
+              />
+            )}
           </div>
 
           {/* Address & CTA */}
