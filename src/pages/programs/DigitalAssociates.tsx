@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { BarChart3, Users, TrendingUp, Target, Database, LineChart } from 'lucide-react';
 import heroImage from '@/assets/programs/digital-associates-hero.jpg';
-import hillaryImg from '@/assets/Gemini_Generated_Image_tb938vtb938vtb93.png';
+import hillaryImg from '@/assets/Gemini_Generated_Image_tb938vtb938vtb93.jpg';
 
 const DigitalAssociates = () => {
   const services = [
