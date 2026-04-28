@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Users, Heart, Briefcase, GraduationCap, Shield, Music, Lightbulb, Target } from 'lucide-react';
 import heroImage from '@/assets/programs/ghetto-youths-hero.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const GhettoYouths = () => {
   const initiatives = [
@@ -235,19 +236,19 @@ const GhettoYouths = () => {
             </p>
             <div className="grid md:grid-cols-4 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">500+</div>
+                <StatNumber value="500+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Youth Reached</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">150+</div>
+                <StatNumber value="150+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Skills Graduates</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">75%</div>
+                <StatNumber value="75%" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Employment Rate</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">5</div>
+                <StatNumber value="5" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Years Running</p>
               </div>
             </div>

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Search, Users, BarChart3, Lightbulb, FileText, Target } from 'lucide-react';
 import heroImage from '@/assets/programs/research-hero.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const Research = () => {
   const principles = [
@@ -279,15 +280,15 @@ const Research = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">15+</div>
+                <StatNumber value="15+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Researchers Trained</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">8</div>
+                <StatNumber value="8" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Research Studies Completed</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">500+</div>
+                <StatNumber value="500+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Members Engaged</p>
               </div>
             </div>

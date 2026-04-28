@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { BarChart3, Users, TrendingUp, Target, Database, LineChart } from 'lucide-react';
 import heroImage from '@/assets/programs/digital-associates-hero.jpg';
 import hillaryImg from '@/assets/Gemini_Generated_Image_tb938vtb938vtb93.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const DigitalAssociates = () => {
   const services = [
@@ -236,15 +237,15 @@ const DigitalAssociates = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">85%</div>
+                <StatNumber value="85%" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Average ROI Improvement</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">300+</div>
+                <StatNumber value="300+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Data Points Analyzed</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">25+</div>
+                <StatNumber value="25+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Organizations Served</p>
               </div>
             </div>

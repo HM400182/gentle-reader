@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Users, Star, Megaphone, BookOpen, Award, Target } from 'lucide-react';
 import heroImage from '@/assets/programs/youth-leadership-hero.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const YouthLeadership = () => {
   const programs = [
@@ -224,19 +225,19 @@ const YouthLeadership = () => {
             </p>
             <div className="grid md:grid-cols-4 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">80+</div>
+                <StatNumber value="80+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Youth Leaders Trained</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">25+</div>
+                <StatNumber value="25+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Projects Led</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">90%</div>
+                <StatNumber value="90%" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Continue Community Engagement</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">3</div>
+                <StatNumber value="3" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Years Program Running</p>
               </div>
             </div>

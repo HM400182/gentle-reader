@@ -5,6 +5,7 @@ import { BookOpen, Mic, Camera, Heart, Users, Star } from 'lucide-react';
 import heroImage from '@/assets/programs/ghetto-stories-hero.jpg';
 import ujiImage1 from '@/assets/programs/uji-sato-1.jpg';
 import ujiImage2 from '@/assets/programs/uji-sato-2.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const GhettoStories = () => {
   const storyTypes = [
@@ -315,19 +316,19 @@ const GhettoStories = () => {
             <h2 className="text-3xl font-bold mb-6">Stories by Numbers</h2>
             <div className="grid md:grid-cols-4 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">205+</div>
+                <StatNumber value="205+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Stories Shared</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">75</div>
+                <StatNumber value="75" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Storytellers</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">10K+</div>
+                <StatNumber value="10K+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">People Reached</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">4</div>
+                <StatNumber value="4" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Years Collecting Stories</p>
               </div>
             </div>
@@ -385,15 +386,15 @@ const GhettoStories = () => {
 
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">200+</div>
+                <StatNumber value="200+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">People Fed Weekly</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">30+</div>
+                <StatNumber value="30+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Active Volunteers</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">52</div>
+                <StatNumber value="52" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Weeks Per Year</p>
               </div>
             </div>

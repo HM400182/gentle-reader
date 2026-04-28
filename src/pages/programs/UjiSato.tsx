@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Heart, Users, Utensils, Calendar, HandHeart, Flame } from 'lucide-react';
 import ujiImage1 from '@/assets/programs/uji-sato-1.jpg';
 import ujiImage2 from '@/assets/programs/uji-sato-2.jpg';
+import StatNumber from "@/components/StatNumber";
 
 const UjiSato = () => {
   return (
@@ -121,15 +122,15 @@ const UjiSato = () => {
             <h2 className="text-3xl font-bold mb-6">Program Impact</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">200+</div>
+                <StatNumber value="200+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">People Fed Weekly</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">30+</div>
+                <StatNumber value="30+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Active Volunteers</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-2">52</div>
+                <StatNumber value="52" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Weeks Per Year</p>
               </div>
             </div>
