@@ -6,6 +6,9 @@ import { Heart, Users, BookOpen, Lightbulb, ArrowRight, MapPin, Target, Eye } fr
 import CountUp from 'react-countup';
 
 import mathareAerial from '@/assets/impact/mathare-aerial.jpg';
+import mathareResilienceHero from '@/assets/programs/mathare-resilience-hero.jpg';
+import ujiSatoHero from '@/assets/programs/uji-sato-1.jpg';
+import ghettoYouthsHero from '@/assets/programs/ghetto-youths-hero.jpg';
 import youthDiscussion from '@/assets/impact/youth-discussion.jpg';
 import bottleArt from '@/assets/impact/bottle-art.jpg';
 import childrenCups from '@/assets/impact/children-cups.jpg';
@@ -169,6 +172,72 @@ const Index = () => {
                 are designed by and for the people we serve.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Programs Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Programs</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Discover the initiatives transforming lives across Mathare through education,
+              empowerment, and community-led action.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Mathare Resilience",
+                description: "A multi-purpose community center providing education, skills training, and social justice advocacy.",
+                image: mathareResilienceHero,
+                link: "/programs/mathare-resilience",
+              },
+              {
+                title: "Uji Sato",
+                description: "Communal porridge cooking that nourishes the community and brings neighbors together.",
+                image: ujiSatoHero,
+                link: "/programs/uji-sato",
+              },
+              {
+                title: "Ghetto Youths",
+                description: "Empowering young people in Mathare through mentorship, opportunity, and leadership development.",
+                image: ghettoYouthsHero,
+                link: "/programs/ghetto-youths",
+              },
+            ].map((program, index) => (
+              <Link
+                key={index}
+                to={program.link}
+                className="group block"
+              >
+                <Card className="overflow-hidden h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={program.image}
+                      alt={program.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-community-warm transition-colors">
+                      {program.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 leading-relaxed">
+                      {program.description}
+                    </p>
+                    <span className="inline-flex items-center text-community-warm font-medium">
+                      Learn More
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
