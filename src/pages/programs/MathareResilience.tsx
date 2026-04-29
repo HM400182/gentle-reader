@@ -124,7 +124,7 @@ const MathareResilience = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <StatNumber value="500+" className="text-3xl font-bold text-primary mb-2" />
+                <StatNumber value="1.2K+" className="text-3xl font-bold text-primary mb-2" />
                 <p className="text-sm text-muted-foreground">Community Members Served</p>
               </div>
               <div>
