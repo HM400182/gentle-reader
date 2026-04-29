@@ -122,8 +122,8 @@ const UjiSato = () => {
             <h2 className="text-3xl font-bold mb-6">Program Impact</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <StatNumber value="200+" className="text-3xl font-bold text-primary mb-2" />
-                <p className="text-sm text-muted-foreground">People Fed Weekly</p>
+                <StatNumber value="10.4K+" className="text-3xl font-bold text-primary mb-2" />
+                <p className="text-sm text-muted-foreground">Meals Served Per Year</p>
               </div>
               <div>
                 <StatNumber value="30+" className="text-3xl font-bold text-primary mb-2" />
