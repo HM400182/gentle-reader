@@ -68,7 +68,7 @@ const StatNumber = ({ value, className, duration = 2 }: StatNumberProps) => {
           end={parsed.end}
           duration={duration}
           separator={parsed.hasComma ? "," : ""}
-          decimals={parsed.end % 1 !== 0 ? 1 : 0}
+          decimals={parsed.decimals}
           suffix={parsed.suffix}
         />
       ) : (
