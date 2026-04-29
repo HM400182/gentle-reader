@@ -60,7 +60,7 @@ const Contact = () => {
                   <Phone className="w-6 h-6 text-community-nature mt-1" />
                   <div>
                     <h4 className="text-foreground font-semibold mb-2">Call Us</h4>
-                    <p className="text-muted-foreground">+254 XXX XXX XXX<br />Monday - Friday, 8AM - 5PM</p>
+                    <p className="text-muted-foreground">+254 720 847 102<br />Monday - Friday, 9AM - 5PM</p>
                   </div>
                 </div>
               </Card>
@@ -69,7 +69,7 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-community-trust mt-1" />
                   <div>
                     <h4 className="text-foreground font-semibold mb-2">Email Us</h4>
-                    <p className="text-muted-foreground">info@ghettofoundation.org<br />programs@ghettofoundation.org</p>
+                    <p className="text-muted-foreground"><br />management@ghettofoundationkenya.org <br/></p>
                   </div>
                 </div>
               </Card>
@@ -78,7 +78,7 @@ const Contact = () => {
                   <Clock className="w-6 h-6 text-community-warm mt-1" />
                   <div>
                     <h4 className="text-foreground font-semibold mb-2">Office Hours</h4>
-                    <p className="text-muted-foreground">Monday - Friday: 8:00 AM - 5:00 PM<br />Saturday: 9:00 AM - 2:00 PM<br />Sunday: Closed</p>
+                    <p className="text-muted-foreground">Monday - Friday: 9:00 AM - 5:00 PM<br />Saturday: 9:00 AM - 2:00 PM<br />Sunday: Closed</p>
                   </div>
                 </div>
               </Card>
