@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 
 interface StatNumberProps {
-  /** Display value, e.g. "500+", "75%", "10K+", "1,200", "3" */
+  /**
+   * Display value, e.g. "500+", "75%", "10K+", "1.2M", "12.5K+", "1,200", "3"
+   */
   value: string | number;
   className?: string;
   duration?: number;
@@ -10,20 +12,29 @@ interface StatNumberProps {
 
 /**
  * Animated stat number that counts up when scrolled into view.
- * Parses common suffixes (+, %, K, K+, M, M+) and preserves them.
+ * Parses common suffixes (+, %, K, K+, M, M+) and preserves them, including
+ * decimal magnitudes like "1.2M" and "12.5K+".
  */
 const parseValue = (raw: string | number) => {
   const str = String(raw).trim();
-  // Match: optional digits w/ commas/decimal, optional K/M, optional %, optional +
-  const match = str.match(/^([\d,.]+)\s*([KM]?)\s*(%?)\s*(\+?)$/i);
-  if (!match) return { end: 0, suffix: str, valid: false };
+  // Match: digits w/ optional commas/decimal, optional K/M, optional %, optional +
+  const match = str.match(/^([\d,]+(?:\.\d+)?)\s*([KM]?)\s*(%?)\s*(\+?)$/i);
+  if (!match) return { end: 0, suffix: str, valid: false, decimals: 0, hasComma: false };
 
   const [, numPart, magnitude, percent, plus] = match;
   const base = parseFloat(numPart.replace(/,/g, ""));
-  if (Number.isNaN(base)) return { end: 0, suffix: str, valid: false };
+  if (Number.isNaN(base)) return { end: 0, suffix: str, valid: false, decimals: 0, hasComma: false };
 
+  const decimalMatch = numPart.split(".")[1];
+  const decimals = decimalMatch ? decimalMatch.length : 0;
   const suffix = `${magnitude.toUpperCase()}${percent}${plus}`;
-  return { end: base, suffix, valid: true, hasComma: numPart.includes(",") };
+  return {
+    end: base,
+    suffix,
+    valid: true,
+    hasComma: numPart.includes(","),
+    decimals,
+  };
 };
 
 const StatNumber = ({ value, className, duration = 2 }: StatNumberProps) => {
