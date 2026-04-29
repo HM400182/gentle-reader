@@ -40,9 +40,9 @@ const Footer = () => {
               {/* Social Icons */}
               <div className="flex gap-4 pt-2">
                 {[
-                  { icon: Facebook, link: "https://facebook.com" },
-                  { icon: Twitter, link: "https://twitter.com" },
-                  { icon: Instagram, link: "https://instagram.com" },
+                  { icon: Facebook, link: "https://www.facebook.com/ghettofoundationKenya/" },
+                  { icon: XIcon, link: "https://x.com/foundationgf/status/1407660959645188100" },
+                  { icon: Instagram, link: "https://www.instagram.com/ghettofoundation/" },
                   { icon: Youtube, link: "https://www.youtube.com/@GhettoFoundation" },
                 ].map(({ icon: Icon, link }, i) => (
                   <a
