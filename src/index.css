@@ -77,7 +77,8 @@ html {
 /* 🔥 HERO BACKGROUND FIX */
 .hero-gradient {
   position: relative;
-  background: url('/images/hero-bg.jpg') no-repeat center center;
+background: url('/images/hero-bg.jpg') no-repeat center center;
+  
   background-size: cover;
 }
 
