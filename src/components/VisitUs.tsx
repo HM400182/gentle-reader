@@ -108,7 +108,7 @@ const VisitUs = () => {
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
                 className={`absolute inset-0 w-full h-full rounded-xl transition-opacity duration-500 ${mapLoaded ? "opacity-100" : "opacity-0"}`}
