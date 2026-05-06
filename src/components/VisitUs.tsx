@@ -11,39 +11,53 @@ const VisitUs = () => {
   const [mapVisible, setMapVisible] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
 
+  // Preconnect + dns-prefetch to Google Maps origins immediately on mount
+  // so the iframe handshake is already warm by the time it mounts.
+  useEffect(() => {
+    const origins = [
+      "https://www.google.com",
+      "https://maps.gstatic.com",
+      "https://maps.googleapis.com",
+      "https://khms0.googleapis.com",
+      "https://khms1.googleapis.com",
+      "https://fonts.gstatic.com",
+    ];
+    const links: HTMLLinkElement[] = [];
+    origins.forEach((href) => {
+      const pre = document.createElement("link");
+      pre.rel = "preconnect";
+      pre.href = href;
+      pre.crossOrigin = "anonymous";
+      document.head.appendChild(pre);
+      links.push(pre);
+
+      const dns = document.createElement("link");
+      dns.rel = "dns-prefetch";
+      dns.href = href;
+      document.head.appendChild(dns);
+      links.push(dns);
+    });
+    return () => links.forEach((l) => l.remove());
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Defer iframe mount slightly so it doesn't block initial paint
-          // when section is already in view on load.
-          requestAnimationFrame(() => setMapVisible(true));
+          // Mount iframe immediately so it can start loading in parallel.
+          setMapVisible(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "200px" }
+      // Start mounting the map well before it scrolls into view
+      { threshold: 0, rootMargin: "800px" }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
   }, []);
-
-  // Preconnect to Google Maps origins as soon as section is near viewport
-  useEffect(() => {
-    if (!mapVisible) return;
-    const origins = ["https://www.google.com", "https://maps.gstatic.com", "https://maps.googleapis.com"];
-    const links: HTMLLinkElement[] = origins.map((href) => {
-      const link = document.createElement("link");
-      link.rel = "preconnect";
-      link.href = href;
-      link.crossOrigin = "anonymous";
-      document.head.appendChild(link);
-      return link;
-    });
-    return () => links.forEach((l) => l.remove());
-  }, [mapVisible]);
 
   return (
     <section
@@ -94,7 +108,7 @@ const VisitUs = () => {
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
                 className={`absolute inset-0 w-full h-full rounded-xl transition-opacity duration-500 ${mapLoaded ? "opacity-100" : "opacity-0"}`}
