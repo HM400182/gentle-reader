@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Heart, Handshake, Sparkles } from 'lucide-react';
@@ -99,9 +100,11 @@ const Sponsors = () => {
               We are deeply grateful to all our partners for walking this journey with us.
             </p>
             <div className="mt-8">
-              <Button variant="outline" className="group">
-                Become a Partner
-                <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button asChild variant="outline" className="group hover:bg-community-warm hover:text-white hover:border-community-warm">
+                <Link to="/contact">
+                  Become a Partner
+                  <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
             </div>
           </div>

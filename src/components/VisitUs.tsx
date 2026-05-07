@@ -130,9 +130,9 @@ const VisitUs = () => {
               asChild
               className="bg-community-warm hover:bg-community-warm/90 text-white gap-2 w-full sm:w-auto"
             >
-              <a 
-                href="https://maps.app.goo.gl/o1kR4vYjH8jY6Y9M9" 
-                target="_blank" 
+              <a
+                href="https://www.google.com/maps/place/Ghetto+Foundation/@-1.2655514,36.8552508,17z"
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <ExternalLink className="w-4 h-4" />

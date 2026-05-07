@@ -84,7 +84,7 @@ const Donate = () => {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {method.details.map((detail, detailIndex) => (
-                    <p key={detailIndex} className="text-gray-600 leading-relaxed">
+                    <p key={detailIndex} className="text-gray-600 leading-relaxed text-sm sm:text-base break-words">
                       {detail}
                     </p>
                   ))}

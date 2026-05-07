@@ -145,11 +145,17 @@ const Contact = () => {
             <p className="text-xl text-muted-foreground">Located in the heart of Mathare, Nairobi</p>
           </div>
           <Card className="community-card overflow-hidden animate-slide-up">
-            <div className="aspect-video bg-muted flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-16 h-16 text-community-warm mx-auto mb-4" />
-                <p className="text-muted-foreground font-medium">Interactive Map Coming Soon</p>
-              </div>
+            <div className="aspect-video bg-muted">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.85414349635!2d36.85525077573673!3d-1.2655513987224203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1777b5edd317%3A0xad01ec1768ca566e!2sGhetto%20Foundation!5e0!3m2!1sen!2ske!4v1715682000000!5m2!1sen!2ske"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ghetto Foundation Location - Mathare, Nairobi, Kenya"
+              />
             </div>
           </Card>
         </div>
