@@ -100,7 +100,7 @@ const Sponsors = () => {
               We are deeply grateful to all our partners for walking this journey with us.
             </p>
             <div className="mt-8">
-              <Button asChild variant="outline" className="group hover:bg-community-warm hover:text-white hover:border-community-warm">
+              <Button asChild variant="outline" className="group hover:bg-community-warm hover:text-white hover:border-community-warm [&_svg]:hover:text-white transition-colors">
                 <Link to="/contact">
                   Become a Partner
                   <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
