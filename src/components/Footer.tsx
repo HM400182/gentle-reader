@@ -109,7 +109,7 @@ const Footer = () => {
                 </div>
 
                 <a
-                  href="tel:+254XXXXXXXXX"
+                  href="tel:+254720847102"
                   className="flex items-center gap-3 text-gray-300 transition hover:text-community-warm"
                 >
                   <Phone className="h-5 w-5 text-community-warm" />
@@ -117,7 +117,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="mailto:info@ghettofoundation.org"
+                  href="mailto:management@ghettofoundationkenya.org"
                   className="flex items-center gap-3 text-gray-300 transition hover:text-community-warm"
                 >
                   <Mail className="h-5 w-5 text-community-warm" />
