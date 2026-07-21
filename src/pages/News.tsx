@@ -59,7 +59,7 @@ const News = () => {
                   <Card key={article.id} className="group overflow-hidden hover-lift animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                     {article.image_url ? (
                       <div className="aspect-video overflow-hidden">
-                        <img src={article.image_url} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <img src={article.image_url} alt={article.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       </div>
                     ) : (
                       <div className="aspect-video bg-gradient-to-br from-community-warm/20 to-community-trust/20 flex items-center justify-center">

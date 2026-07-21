@@ -61,7 +61,7 @@ const Team = () => {
                     <div className="relative mb-6">
                       <div className="relative overflow-hidden rounded-lg">
                         {member.image_url ? (
-                          <img src={member.image_url} alt={member.name} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+                          <img src={member.image_url} alt={member.name} loading="lazy" decoding="async" className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
                         ) : (
                           <div className="w-full h-64 bg-muted flex items-center justify-center">
                             <Users className="w-16 h-16 text-muted-foreground/50" />

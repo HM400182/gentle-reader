@@ -9,7 +9,7 @@ const About = () => {
     <Layout>
       {/* Hero with Mathare aerial bg */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <img src={mathareAerial} alt="Mathare aerial view" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={mathareAerial} alt="Mathare aerial view" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 py-20 animate-fade-in">
           <h1 className="text-white mb-6 drop-shadow-lg">About Ghetto Foundation</h1>
@@ -23,7 +23,7 @@ const About = () => {
       {/* Our Story */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]">
-          <img src={mathareAerial} alt="" className="w-full h-full object-cover" />
+          <img src={mathareAerial} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -49,7 +49,7 @@ const About = () => {
 
             <div className="animate-slide-up">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img src={mathareAerial} alt="Mathare community" className="w-full h-80 object-cover" />
+                <img src={mathareAerial} alt="Mathare community" loading="lazy" decoding="async" className="w-full h-80 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white">
                   <div className="flex items-center gap-2 mb-2">
@@ -66,7 +66,7 @@ const About = () => {
 
       {/* Mission & Vision with bg image */}
       <section className="relative py-24 overflow-hidden">
-        <img src={mathareAerial} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={mathareAerial} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/75" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -122,7 +122,7 @@ const About = () => {
 
       {/* CLRA */}
       <section className="relative py-20 overflow-hidden">
-        <img src={mathareAerial} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={mathareAerial} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--community-nature))]/90 to-[hsl(var(--community-trust))]/90" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 animate-fade-in">
           <h2 className="text-white mb-6">Community-Led Research & Action</h2>
@@ -139,7 +139,7 @@ const About = () => {
 
       {/* Join */}
       <section className="relative py-20 overflow-hidden">
-        <img src={mathareAerial} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={mathareAerial} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/80" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 animate-fade-in">
           <h2 className="text-white mb-6">Join Our Mission</h2>
