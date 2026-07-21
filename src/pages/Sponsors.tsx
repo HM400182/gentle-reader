@@ -69,7 +69,7 @@ const Sponsors = () => {
                   <Card key={sponsor.id} className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 bg-gradient-to-br from-primary/5 to-secondary/10 backdrop-blur-sm">
                     <CardHeader className="pb-3">
                       {sponsor.logo_url && (
-                        <img src={sponsor.logo_url} alt={sponsor.name} className="w-16 h-16 object-contain rounded-xl mb-3" />
+                        <img src={sponsor.logo_url} alt={sponsor.name} loading="lazy" decoding="async" className="w-16 h-16 object-contain rounded-xl mb-3" />
                       )}
                       <CardTitle className="text-lg leading-tight">{sponsor.name}</CardTitle>
                     </CardHeader>
