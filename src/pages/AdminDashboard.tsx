@@ -84,13 +84,41 @@ const AdminDashboard = () => {
 
   const uploadImage = async (file: File, folder: string): Promise<string | null> => {
     setUploading(true);
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${folder}/${Date.now()}.${fileExt}`;
-    const { error } = await supabase.storage.from('media').upload(fileName, file);
-    setUploading(false);
-    if (error) { toast({ title: "Upload failed", description: error.message, variant: "destructive" }); return null; }
-    const { data } = supabase.storage.from('media').getPublicUrl(fileName);
-    return data.publicUrl;
+    try {
+      const { processImage } = await import('@/lib/imageProcessing');
+      const processed = await processImage(file, { maxWidth: 1600, maxHeight: 1600, thumbSize: 400, quality: 0.82 });
+      const stamp = Date.now();
+      const mainPath = `${folder}/${stamp}.${processed.ext}`;
+      const thumbPath = `${folder}/${stamp}_thumb.${processed.ext}`;
+
+      const [mainRes, thumbRes] = await Promise.all([
+        supabase.storage.from('media').upload(mainPath, processed.main, {
+          contentType: processed.mime, cacheControl: '31536000', upsert: false,
+        }),
+        supabase.storage.from('media').upload(thumbPath, processed.thumb, {
+          contentType: processed.mime, cacheControl: '31536000', upsert: false,
+        }),
+      ]);
+
+      if (mainRes.error) {
+        toast({ title: "Upload failed", description: mainRes.error.message, variant: "destructive" });
+        return null;
+      }
+      if (thumbRes.error) {
+        // Non-fatal: main image is what the app displays.
+        console.warn('Thumbnail upload failed:', thumbRes.error.message);
+      }
+
+      const { data } = supabase.storage.from('media').getPublicUrl(mainPath);
+      const sizeKB = Math.round(processed.main.size / 1024);
+      toast({ title: "Image optimized", description: `Resized to ${processed.width}×${processed.height} (${sizeKB} KB)` });
+      return data.publicUrl;
+    } catch (err: any) {
+      toast({ title: "Upload failed", description: err?.message || 'Could not process image', variant: "destructive" });
+      return null;
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, setter: (url: string) => void, folder: string) => {
