@@ -9,7 +9,7 @@ const About = () => {
     <Layout>
       {/* Hero with Mathare aerial bg */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <img src={mathareAerial} alt="Mathare aerial view" fetchpriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={mathareAerial} alt="Mathare aerial view" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 py-20 animate-fade-in">
           <h1 className="text-white mb-6 drop-shadow-lg">About Ghetto Foundation</h1>
