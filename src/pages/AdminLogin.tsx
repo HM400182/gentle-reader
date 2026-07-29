@@ -216,17 +216,24 @@ const AdminLogin = () => {
         }
         .animate-admin-rise { animation: adminRise 0.7s ease-out both; }
         .admin-input {
-          background: rgba(255,255,255,0.12) !important;
-          border: 1px solid rgba(255,255,255,0.25) !important;
+          background: rgba(15, 23, 42, 0.55) !important;
+          border: 1px solid rgba(255,255,255,0.35) !important;
           color: #fff !important;
           transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
-        .admin-input::placeholder { color: rgba(255,255,255,0.55); }
+        .admin-input::placeholder { color: rgba(255,255,255,0.7); }
         .admin-input:focus-visible {
           border-color: #f97316 !important;
           box-shadow: 0 0 0 3px rgba(249,115,22,0.35), 0 0 18px rgba(249,115,22,0.35) !important;
-          background: rgba(255,255,255,0.18) !important;
+          background: rgba(15, 23, 42, 0.7) !important;
           outline: none;
+        }
+        .admin-input:-webkit-autofill,
+        .admin-input:-webkit-autofill:hover,
+        .admin-input:-webkit-autofill:focus {
+          -webkit-text-fill-color: #fff !important;
+          -webkit-box-shadow: 0 0 0 1000px rgba(15,23,42,0.75) inset !important;
+          caret-color: #fff;
         }
         @media (prefers-reduced-motion: reduce) {
           .admin-animated-bg, .admin-blob-a, .admin-blob-b, .admin-blob-c { animation: none !important; }
